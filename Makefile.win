@@ -1,0 +1,96 @@
+# Project: Adventure
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = 
+OBJ  = Adventure-Main.o ADV_OnInit.o ADV_OnEvent.o ADV_OnLoop.o ADV_OnRender.o ADV_OnCleanup.o CSurface.o CEvent.o CEntity.o CAnimate.o MTile.o CMap.o CArea.o CCamera.o CFPS.o CPlayer.o GFXMODE.o CMenu.o CText.o CItem.o CInventory.o CEnemy.o CMessage.o $(RES)
+LINKOBJ  = Adventure-Main.o ADV_OnInit.o ADV_OnEvent.o ADV_OnLoop.o ADV_OnRender.o ADV_OnCleanup.o CSurface.o CEvent.o CEntity.o CAnimate.o MTile.o CMap.o CArea.o CCamera.o CFPS.o CPlayer.o GFXMODE.o CMenu.o CText.o CItem.o CInventory.o CEnemy.o CMessage.o $(RES)
+LIBS =  -L"D:/Dev-Cpp/lib" -L"D:/Dev-Cpp/SDL-devel-1.2.15-mingw32/SDL-1.2.15/lib" -mwindows -lmingw32 -lSDLmain -lSDL_image -lSDL -lSDL_ttf  -g3 
+INCS =  -I"D:/Dev-Cpp/include" 
+CXXINCS =  -I"D:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"D:/Dev-Cpp/include/c++/3.4.2/backward"  -I"D:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"D:/Dev-Cpp/include/c++/3.4.2"  -I"D:/Dev-Cpp/include"  -I"D:/Dev-Cpp/SDL-devel-1.2.15-mingw32/SDL-1.2.15/include"  -I"D:/Dev-Cpp/SDL-devel-1.2.15-mingw32/SDL-1.2.15/include/SDL" 
+BIN  = Adventure-2.exe
+CXXFLAGS = $(CXXINCS)   -g3
+CFLAGS = $(INCS)   -g3
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before Adventure-2.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "Adventure-2.exe" $(LIBS)
+
+Adventure-Main.o: Adventure-Main.cpp
+	$(CPP) -c Adventure-Main.cpp -o Adventure-Main.o $(CXXFLAGS)
+
+ADV_OnInit.o: ADV_OnInit.cpp
+	$(CPP) -c ADV_OnInit.cpp -o ADV_OnInit.o $(CXXFLAGS)
+
+ADV_OnEvent.o: ADV_OnEvent.cpp
+	$(CPP) -c ADV_OnEvent.cpp -o ADV_OnEvent.o $(CXXFLAGS)
+
+ADV_OnLoop.o: ADV_OnLoop.cpp
+	$(CPP) -c ADV_OnLoop.cpp -o ADV_OnLoop.o $(CXXFLAGS)
+
+ADV_OnRender.o: ADV_OnRender.cpp
+	$(CPP) -c ADV_OnRender.cpp -o ADV_OnRender.o $(CXXFLAGS)
+
+ADV_OnCleanup.o: ADV_OnCleanup.cpp
+	$(CPP) -c ADV_OnCleanup.cpp -o ADV_OnCleanup.o $(CXXFLAGS)
+
+CSurface.o: CSurface.cpp
+	$(CPP) -c CSurface.cpp -o CSurface.o $(CXXFLAGS)
+
+CEvent.o: CEvent.cpp
+	$(CPP) -c CEvent.cpp -o CEvent.o $(CXXFLAGS)
+
+CEntity.o: CEntity.cpp
+	$(CPP) -c CEntity.cpp -o CEntity.o $(CXXFLAGS)
+
+CAnimate.o: CAnimate.cpp
+	$(CPP) -c CAnimate.cpp -o CAnimate.o $(CXXFLAGS)
+
+MTile.o: MTile.cpp
+	$(CPP) -c MTile.cpp -o MTile.o $(CXXFLAGS)
+
+CMap.o: CMap.cpp
+	$(CPP) -c CMap.cpp -o CMap.o $(CXXFLAGS)
+
+CArea.o: CArea.cpp
+	$(CPP) -c CArea.cpp -o CArea.o $(CXXFLAGS)
+
+CCamera.o: CCamera.cpp
+	$(CPP) -c CCamera.cpp -o CCamera.o $(CXXFLAGS)
+
+CFPS.o: CFPS.cpp
+	$(CPP) -c CFPS.cpp -o CFPS.o $(CXXFLAGS)
+
+CPlayer.o: CPlayer.cpp
+	$(CPP) -c CPlayer.cpp -o CPlayer.o $(CXXFLAGS)
+
+GFXMODE.o: GFXMODE.cpp
+	$(CPP) -c GFXMODE.cpp -o GFXMODE.o $(CXXFLAGS)
+
+CMenu.o: CMenu.cpp
+	$(CPP) -c CMenu.cpp -o CMenu.o $(CXXFLAGS)
+
+CText.o: CText.cpp
+	$(CPP) -c CText.cpp -o CText.o $(CXXFLAGS)
+
+CItem.o: CItem.cpp
+	$(CPP) -c CItem.cpp -o CItem.o $(CXXFLAGS)
+
+CInventory.o: CInventory.cpp
+	$(CPP) -c CInventory.cpp -o CInventory.o $(CXXFLAGS)
+
+CEnemy.o: CEnemy.cpp
+	$(CPP) -c CEnemy.cpp -o CEnemy.o $(CXXFLAGS)
+
+CMessage.o: CMessage.cpp
+	$(CPP) -c CMessage.cpp -o CMessage.o $(CXXFLAGS)

@@ -1,0 +1,89 @@
+Equipment Notes:
+
+Types of equipment:
+Weapons
+Armor
+Helmet
+Accessory
+Shoes? I dunno yet... might be too much... need to look at notes to remember which pieces of equipment are responsoble for which stats
+
+A piece of equipment can do a number of things
+List of effects/things equipment can do besides attack/Defense and boost stats:
+-Cause a status effect  to player on equipping(poison, stone, etc...)
+   -(note: a status effect could be good or bad, bad being poison, good being auto-haste or regen)
+-cause status to enemy on contact
+-protect against a status effect, partially or completely
+-teach certain abilities to specific classes... almost forgot about this one.
+
+list of swords (ideas):
+bastard sword
+barbarian sword
+long sword
+broadsword
+claymore
+iron sword
+copper sword
+bronze sword
+platinum sword
+diamond sword
+adamant sword
+mythril sword
+rune blade
+training sword
+soldier's sword
+knight's sword
+Paladin's sword
+kingsblade
+Excalibur
+vampire sword
+dracula's sword (dracula's fangs could be a dagger.)
+Deathbringer
+Rapture
+Apocalypse
+Ragnarok
+End of Days
+poison sword (bog sword or swamp sword or something like that)
+Damascus sword
+steel blade
+rapier
+Zhanmadao
+mage slayer (steals mp)
+Force Eater (stealer... does mp damage in addition)
+Silver blade
+heat sword
+flame saber
+lavablade
+Flametounge
+chill blade
+frost sword
+icebrand
+shock saber
+thunder blade
+Lightning Stike (lightning steel)
+Nova Blade
+Earth edge
+Rock blade
+coral sword
+sweating sword
+aqua edge
+waterfall blade
+mystic sword
+Holy sword
+Heaven's blessing
+God's Wrath
+Gladius
+Ancient Blade (have to find)
+Save The Queen
+Enhance Edge
+Enhancer (raises mp and magic?)
+The Master Sword
+scimitar
+falchion
+defender
+
+ultimate weapon = Master of Souls / Fates
+
+since swords and weapons will teach skills and all that I'm think it would be probably a good I dea to name them not only after what they're made of but after what type of skill they teach. ie, if they teach the skill "counter" the sword could be called vigilante or revenge or something. I think nameing swords after elemtns is a good idea. I think a master list of skills is going to be required next before a master list of weapons is made. 
+
+buttefly edge (sounds like a dagger)
+

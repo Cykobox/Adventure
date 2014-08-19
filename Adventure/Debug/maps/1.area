@@ -1,0 +1,6 @@
+./images/pc_tileset-hres.bmp
+3
+1:5 -1:0 
+./maps/1.map ./maps/2.map ./maps/3.map
+./maps/4.map ./maps/5.map ./maps/6.map
+./maps/7.map ./maps/8.map ./maps/9.map

@@ -1,0 +1,93 @@
+This is a record of the updates that Have been made and their date:
+
+11/25/2012 (tim)
+-Created EnemyList vector for enemies and created a function to load it and create it from the area file.
+-created enemy.data file that holds the enemy data.
+-created CArea::LoadEnemyList () Which reads enemy.data file and fills the enemylist vector with the info, then pushes each enemy into the entitylist vector so that it can continue to be rendered and all that jazz.
+-Adv.Onloop now deletes any entity with the dead variable set to true. (Enemies will handle their own respawning and all that but while dead they don't exist in the entitylist so they arent involved in the collisions or rendered or targeting or any of that.
+
+NOTE:THIS ALL DOESNT WORK. I keep getting really weird errors on std::string delcarations and the enemies don't hold their values after being pushed into the Enemylist (not Entitylist)
+
+11/21/12 (Tim)
+- Enemy HPCheck() now checks for death and if it dies it calls Enemy.death() 
+- Player1.GetStuff() recieves stuff and puts it in its appropriate place
+- Enemy.death() rewards the player and marks the enemy as dead. then it gets removed from the EntityList... which isn't exactly what needs to happen, but thats the way it works now.
+- Player now has Bank variable... called bank incase currency turns out not to be gold or silver etc...
+- Player can officially kill an enemy.
+
+-Created "EnemyList Vector in ADV.h. It is a vector of enemies
+   - EnemyList is cleared at the beginning of Map.OnLoad() and then the vector is filled with information from the MAP file. 
+   - Since EnemyList can't be pushed into EntityList... and number of things are going to have to be changed.
+	-Rendering add EnemyList[x].OnRender loop to render them
+	-EnemyList.OnLoad needs to load information from EnemyFile
+	-Collision detection needs to change
+	-Targeting needs to update to EnemyList
+	-OnLoop needs to go through EnemyList
+	HUGE UPDATE NEEDS TO HAPPEN TO MAKE THIS WORK!!!
+
+11/20/12 (Tim)
+- Debugged Chris's Inventory code... works perfectly
+- created and implimented a damage calculation for attacking. 
+  - Designed and laidout in ADV_Magic_layout.xlsx spreadsheet (on Weapons Page.
+-Debugged whole thing and got it working. 
+NOTE(This isn't quite designed yet to work on multiple gfx modes... might need some tweaking to work in animations and attack timing and damage displays... but that shouldn't be too much work I don't think.
+- added in attack specific stats to player1 and enemy in order to test attacking functions. (Still no speed to monster defense so...)
+ - Also fixed some linking problems, which in turn fixed some display problems with the menu and with the message system.
+
+(Note: only #include in .h file is you need the infomation in the declaration of a class (ie you're creating an instance of a class as a member of a new class... if not, then don't. Only #include in .cpp files if you need access to the information required in the .h file.)
+
+11/17/12 (Chris)
+- moved the 'AdvGame Game' object to be a global, so it can be accessed from anywhere (needed for inventory)
+- Moved CPlayer Player1 to be public (needed for inventory)
+- Scrapped CItem class.
+- Created SInvItem, structure for holding inventory items. Updated CInventory to use the new struct.
+- Created SItem (.h and .cpp) This houses the guts of how items in the game work:
+-- Inventory items are initialized by the Inventory constructor (which is called form the game constructor)
+-- Each item has a struct with relevant information in it. And a function pointer to a generic Use() function.
+-- Created Potion and HiPotion as example items.
+
+10/15/2012 (Tim)
+-debugged the targeting system 
+-simplified targeting system now works. player presses cancel to go into targeting modd and it auto selects the closest target. then the player selects the target with action and then attacks them. (and it works too.. )
+-still need FindNextTarget(); and FindPrevTarget(): functions.
+
+
+10/12/2012 (Tim)
+- finishes putting in and getting the Action List implimented.
+  -Moved Messages into the ActionListControl class. Now all messages have to go through ActionControl...
+  - Added in a quik way to display messages without reating an action in case.
+  - Messages can still be displayed through ActionControl.Messages.AddMessage();
+- Player1 still moves without move actions (move actions still need to be tested
+- Added in Simplied target variables (default target is automatically enemy1)
+- Added in Facing variable to CPlayer to hold which direction he is facing.
+- Added CPlayer.Attack(CEntity* Target) it doesn't do anything yet but its there...
+- Created Targeting Class... made it a member of CPlayer class...
+- created OnEvent() situations to play with Targeting system
+- Created most of the targeting system... the only thing left is CPlayer.FindTarget()... after that its debug time... 
+
+10/8/2012 (Tim)
+- Added Pause bool to ADV class
+- Added Press_A_To_Con bool to ADV class for action control
+- Added CAction class documents
+- Added CActionListControl documents
+- Created Action key (Number Pad 2)
+- Mostly set up for Action list implimentation. Still using old system but its almost ready to insert and test. Action button is fully testable but other actions can't be called so it doesn't really matter. I can't get the OnEvent.SDLKEyUP_wasd to cleanly create and add an action to the list so they are commented out.
+-ActionControl is defined in the ADV.h file in the ADV-game class as a variable.
+
+I need to get ActionControl to be able to create messages and access player information - this is the hold up.
+
+10/6/2012: (Tim)
+
+-Updated the Menu System
+   --Now displays stats directly from the Player1 class, so it also updates
+   --Displays name, HP, MP, AP
+   --Character stats are now defined in the Player class constructor function...
+   --Also fills menu with black each frame before rendering stats... without crashing
+
+
+10/4/2012: (Tim's)
+
+-I fix the code and un-commented it to allow the player to hold down a key to move repetatively. 
+-I added in another set of variables to the Character class to differenciate between their weapon proficencies levels and their learning rates.
+-I created a picture to added later in the battle system to show a targeted enemy... its basically a red square just larger than a tile size (2pixels on eithersize) that is red.
+-I added in Current HP and Max HP into the Menu and played with ways of getting the information to render but couldn't find a way to do it correctly.

@@ -1,0 +1,21 @@
+float GetDotProduct( player, Entity1, Entity2 )
+{
+	float VecE1[2] = { player.x - Entity1.x, player.y - Entity1.y };
+	//ok so create a vector array, x1 - x2, y1 - y2
+	float V1Length = squareRoot( VecE1[0] * VecE1[0] + VecE1[1] * VecE1[1] );
+	// vector length is measuring the distance of the first vector
+	VecE1[0] /= V1Length;
+	VecE1[1] /= V1Length;
+// ????????? 
+	
+	float VecE2[2] = { player.x - Entity2.x, player.y - Entity2.y };
+	// repeat above process for VecE2.
+
+	int dot = VecE1[0] * VecE2[0] + VecE1[1] * VecE2[1];
+}
+
+
+
+GetNext()
+// loop over all entities and look for the max GetDotProduct value (it will range from -1 to 1)
+// You will have to check for the direction of rotation manually.

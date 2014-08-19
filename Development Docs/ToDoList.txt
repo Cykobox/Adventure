@@ -1,0 +1,143 @@
+Adventure To Do List: 
+
+
+immediate next steps:
+ - monsters fill map on map load, with information from map file...
+ - character leveling system with exp from monsters (by skill and stats)
+ - Manage attacking function to be able to handle multiple gfx modes 
+   --Specifically animations and damage display messages.
+ - Load item list from File (see map loading from file functions)
+
+
+Forsee-able future steps
+
+Step 1:
+ X update the Menu (get character's information to update and render onto the menu)
+ X Create an action button (attack, talk, read, all that jazz)
+
+step 2:
+ - Battle System Step 1
+X Player Attack Functions and Menu response.
+X Targeting system
+X More Monsters (map file lists type and max number of monsters... then fills entity list.
+
+Step 3: MENUS!!! 
+ - Updated Menu with...
+ - Navigation
+ - Status Screen
+ - Item Inventory
+ - Equipable Equipment (weapons, armor and all that jazz)
+
+Step 4:
+ - Battle System Step 2
+
+Step 5:
+ - Gold (Currency)
+ - Town layout
+ - Including NPC's
+
+Step 6:
+ - Advanced Town Layout
+    -- Moving NPC's
+ - Action button overhaul... being able to read, talk, yes, no, trigger events by pressing action button and not attacking NPC's in town... (not quite sure how to do this yet...)
+
+Step 7:
+ - SHOPS!! Lets buy some shits...
+
+Step 8:
+ - Battle system step 3
+ - Battle System step 4
+
+
+Ideas that are just floating around:
+
+--Taking the Characters out of the Entity list and creating a "Party" Basically a second entity list with a specific number of slots just for the Characters... This would make it easier to "Arrange" a party or something like that.  I don't know if its necessary but in my head it would make things simpler.
+
+
+
+
+
+
+Battle system Description:
+Step 1:
+
+-Enemies roam around the world map, No Battle screen is entered... battles take place on the world map.
+-The player roams around with the enemies, can target an enemy, and then walk up to it and attack it.
+-The player can attack in the four basic direction with short range weapons, Medium range weapons can hit the diagonals, and long range weapons can attack from obviously farther away (how far I don't know yet...)
+-When the player attacks it calculates damage and inflicts damage and all that fun stuff, then checks to see if the enemy died. 
+-if the enemy dies, then it rewards basic experience points.
+
+Step 2:
+- The enemy attacks back! I KNOW!! the Nerve!!
+- Character Action Response Bar (carb? really? it can have another name I guess)
+   --When the Character attacks, A progress bar empties. Based on their attack speed (based on the dexterity, and weapon speed) the bar refills, when its full the character can attack again, there is a "sweet spot." If the character hits the attack button on the sweet spot (depending on how close he is) he gets a combo hit or critical hit or both... If he hits it before the sweet spot, he get's penalized and the attack isn't as powerful, he looses a combo, and if he's way too early he can't attack until the bar completely refills... (also his defense percentage goes down if he attacks too early.)
+
+
+Step 3:
+ - Player skills and abilities system
+  (includes Magic layout and Abilities...)
+ - Keyboard hotkeys for abilities and magic.
+ - Ability Levels and Magic Levels
+
+Step 4:
+ - Advanced Enemy AI... whatever this means and turns into...
+
+
+
+
+
+
+
+
+Action List class ideas:
+
+CAction
+
+flags:
+ - ATC (press "Action to continue") (the Player has to press the action button to proceed)
+ - Disable Action Key
+ - Overlap? (can other actions be going on at the same time?)
+
+Variables:
+ - Bool ATC (Action to continue) if the player needs to press the action button to proceed)
+ - Overlap (Can other actions be going on at the same time?)
+ - SRC_Entity (The entity that caused this Action) - wont always be needed, but could be useful
+ - TAR_Entity (Target Entity that will recieve the effects of the Action)
+ - countdown (int, num of miliseconds until it goes off)
+ - Timer (How long does it hold up the game, in milliseconds)
+ - Freeze_SRC_ENT (does the source entity freeze while its waiting?)
+ - Freeze_TAR_ENT (does the target entity freeze while its waiting?)
+ - Type
+   - Move (entity moves in a certain way)
+   - Attack (one entity attack another)
+   - Effect (effect one entity)
+   - 
+
+
+
+
+Targeting System outline:
+
+The player moves around the map and based on his movements and the way he is facing, the possible_target updates to the closest enemy to the player in the direction he is facing... 
+
+You then hit the target key (6) which selects the target in the possible target... 
+if you hold down the target button then you go into target select mode and as you hit left and right, you change your selection and when you let go of the target button, it locks in that target.
+
+The targeting system i read about i really like in the fact that it selects the enemy with the highest threat level and learns, slowly, which type of enemy the player likes to select. That being said he was only dealing with 3 different enemies and thus that is a lot easier to keep track of... that being said I might be able to put the enemies into catagories... but that might be getting a little too complicated...
+
+I like the idea that when you press down the targeting button you go into targeting mode and when you release it it selects the target... that being said the game isn't going to be paused... so the character is going to pause while he's selecting the target and the enemies aren't going to freeze... also this isn't going to help when dealing with multiple characters and all that... unless all characters always attack the enemy you're targeting... which isn't too cool.
+
+So whats an easy... and non button intensive way to target multiple targets while still moving... without using a mouse? 
+
+i can think of a way to do it while using a mouse, and a way to do it without using a mouse but by pausing the game... but not without either. 
+
+Why do I not want the game to pause? I don't want the action to stop... I still have the fantasy that this game could end up being multiplayer online at some point... which I think should be ruled out but i still hold the fantasy. I don't know I just don't want the action to stop, not because I want it to be non-stop action and "intense" or anything like that. I just don't like the start and stop way that ff12 worked. I mean the system worked and you eventually learn to use the system... but they could make things sooooo much harder because the game would pause and you could select initial commands and all that stuff... it made the game soo much harder because they could throw so much shit at you and you could pause the game and all that jazz... 
+
+I don't want the game to pause... but when you go into targeting mode you still need to be able to move and select targets.  
+
+ok so you can press (cancel) to lock to the targeted enemy... or you can hold it down and it will go into targeting mode which puts a Pre-selected target on each enemy and a red target on the enemy you want to lock onto, and you use (action) and (menu) to rotate through the options... and then you release (cancel) to lock onto the target.
+
+targeting updates anytime anything moves... anytime any enemy moves or anything like that it updates... so I can call it on (player1.onmove or enemy.onmove... I guess that works... but i don't think thats going to work on the later GFX options... but I like it so far.
+
+
+Final word of targeting system... pressing 6 (cancel) puts the player in targeting mode... pressing 6 (Cancel) and 4(?) will then change targets... and select it with 2 (action)... 

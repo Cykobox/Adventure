@@ -1,0 +1,17 @@
+﻿Build started 1/19/2013 11:42:23 PM.
+     1>Project "D:\My Stuff\Dropbox\Dropbox\Adventure\Adventure\Adventure.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\Adventure.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         Adventure.vcxproj -> D:\My Stuff\Dropbox\Dropbox\Adventure\Adventure\Debug\Adventure.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\Adventure.unsuccessfulbuild".
+         Touching "Debug\Adventure.lastbuildstate".
+     1>Done Building Project "D:\My Stuff\Dropbox\Dropbox\Adventure\Adventure\Adventure.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.29
