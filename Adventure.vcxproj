@@ -10,6 +10,61 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Adventure-Main.cpp" />
+    <ClCompile Include="src\ADV_OnCleanup.cpp" />
+    <ClCompile Include="src\ADV_OnEvent.cpp" />
+    <ClCompile Include="src\ADV_OnInit.cpp" />
+    <ClCompile Include="src\ADV_OnLoop.cpp" />
+    <ClCompile Include="src\ADV_OnRender.cpp" />
+    <ClCompile Include="src\CAction.cpp" />
+    <ClCompile Include="src\CActionListControl.cpp" />
+    <ClCompile Include="src\CAnimate.cpp" />
+    <ClCompile Include="src\CArea.cpp" />
+    <ClCompile Include="src\CCamera.cpp" />
+    <ClCompile Include="src\CEnemy.cpp" />
+    <ClCompile Include="src\CEntity.cpp" />
+    <ClCompile Include="src\CEvent.cpp" />
+    <ClCompile Include="src\CFPS.cpp" />
+    <ClCompile Include="src\CInventory.cpp" />
+    <ClCompile Include="src\CItem.cpp" />
+    <ClCompile Include="src\CMap.cpp" />
+    <ClCompile Include="src\CMenu.cpp" />
+    <ClCompile Include="src\CMessage.cpp" />
+    <ClCompile Include="src\CPlayer.cpp" />
+    <ClCompile Include="src\CSurface.cpp" />
+    <ClCompile Include="src\CTargeting.cpp" />
+    <ClCompile Include="src\CText.cpp" />
+    <ClCompile Include="src\GFXMODE.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MTile.cpp" />
+    <ClCompile Include="src\SItem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ADV.h" />
+    <ClInclude Include="src\CAction.h" />
+    <ClInclude Include="src\CActionListControl.h" />
+    <ClInclude Include="src\CAnimate.h" />
+    <ClInclude Include="src\CArea.h" />
+    <ClInclude Include="src\CCamera.h" />
+    <ClInclude Include="src\CEnemy.h" />
+    <ClInclude Include="src\CEntity.h" />
+    <ClInclude Include="src\CEvent.h" />
+    <ClInclude Include="src\CFPS.h" />
+    <ClInclude Include="src\CInventory.h" />
+    <ClInclude Include="src\CMap.h" />
+    <ClInclude Include="src\CMenu.h" />
+    <ClInclude Include="src\CMessage.h" />
+    <ClInclude Include="src\CPlayer.h" />
+    <ClInclude Include="src\CSurface.h" />
+    <ClInclude Include="src\CTargeting.h" />
+    <ClInclude Include="src\CText.h" />
+    <ClInclude Include="src\Define.h" />
+    <ClInclude Include="src\GFXMODE.h" />
+    <ClInclude Include="src\MTile.h" />
+    <ClInclude Include="src\SInvItem.h" />
+    <ClInclude Include="src\SItem.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DC5915F0-0E31-4285-AF95-C8F07CAC6BC9}</ProjectGuid>
     <RootNamespace>Adventure</RootNamespace>
@@ -71,9 +126,6 @@
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Source.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
