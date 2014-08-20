@@ -9,6 +9,7 @@ void AdvGame::OnExit() {
 }
 
 void AdvGame::OnKeyDown(SDL_Keysym sym) {
+	/*
 	switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
           case (GFX_MODE_PC): {
                switch (sym) {
@@ -119,9 +120,11 @@ void AdvGame::OnKeyDown(SDL_Keysym sym) {
           }
 		}
 	}
+	*/
 }
 
-void AdvGame::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode) {
+void AdvGame::OnKeyUp(SDL_Keysym sym) {
+	/*
      switch(sym) {
          case SDLK_LEFT: {
             if ((Player1.TargetingSys.Targeting_Mode == true) || (Pause == false) || (ActionControl.Press_A_To_Con == false)) {
@@ -139,4 +142,5 @@ void AdvGame::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode) {
          break;
          }
      }
+	 */
 }

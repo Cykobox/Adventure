@@ -9,6 +9,7 @@ CEvent::~CEvent(){
 
 void CEvent::OnEvent(SDL_Event* Event) {
      switch(Event->type) {
+		 /*
           case SDL_ACTIVEEVENT: {
                switch(Event->active.state) {
                     case SDL_APPMOUSEFOCUS: {
@@ -32,16 +33,15 @@ void CEvent::OnEvent(SDL_Event* Event) {
                }
                break;
           }
+		 */
           
           case SDL_KEYDOWN: {
-			// Event has to be cast to a SDL_Keyboard event?
-            //OnKeyDown(Event->keysym);
+            OnKeyDown(Event->key.keysym);
             break;
           }
           
           case SDL_KEYUP: {
-			// Event has to be cast to a SDL_Keyboard event?
-			//OnKeyUp(Event->key.keysym.sym,Event->key.keysym.mod,Event->key.keysym.unicode);
+			OnKeyUp(Event->key.keysym);
             break;
           }
           
@@ -78,15 +78,15 @@ void CEvent::OnEvent(SDL_Event* Event) {
               break;
           }
  
-          case SDL_VIDEORESIZE: {
-              OnResize(Event->resize.w,Event->resize.h);
-              break;
-          }
+          //case SDL_VIDEORESIZE: {
+          //    OnResize(Event->resize.w,Event->resize.h);
+          //    break;
+          //}
    
-          case SDL_VIDEOEXPOSE: {
-              OnExpose();
-              break;
-          }
+          //case SDL_VIDEOEXPOSE: {
+          //    OnExpose();
+          //    break;
+          //}
  
           default: {
               OnUser(Event->user.type,Event->user.code,Event->user.data1,Event->user.data2);
