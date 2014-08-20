@@ -13,10 +13,26 @@ bool AdvGame::OnInit() {
      
      GFXMODE::GFXMODE_Control.CHANGE_GFX_MODE(GFX_MODE_PC);
      
-     if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL) {
-         return false;
-     }
-     
+//     if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL) {
+//         return false;
+//     }
+
+	 // create our main window
+	 mpMainWindow = SDL_CreateWindow("Adventure",
+		 SDL_WINDOWPOS_UNDEFINED,
+		 SDL_WINDOWPOS_UNDEFINED,
+		 0, 0,
+		 SDL_WINDOW_FULLSCREEN_DESKTOP);
+
+	 if (mpMainWindow == NULL)
+	 {
+		 return false;
+	 }
+
+	 // create the rendering context
+	 mpRenderer = SDL_CreateRenderer(mpMainWindow, -1, SDL_RENDERER_PRESENTVSYNC);
+
+
      if(Player1.OnLoad("./images/pc_char-hi.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
@@ -65,12 +81,12 @@ bool AdvGame::OnInit() {
 		 return false;
 	 }
 
-     SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL * 5);     //This sets the option where if you hold down a key, it acts like you keep pressing it.
+     //SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL * 5);     //This sets the option where if you hold down a key, it acts like you keep pressing it.
                         //1 = delay = how long you have to hold it down before it starts repeating in milliseconds
 	                    //SDL_DEFAULT_REPEAT_INTERVAL * 5 = interval = how fast it repeats... in milliseconds (Default is build in SDL default... i *5'd it to slow it down.)
      CCamera::CameraControl.TargetMode = TARGET_MODE_CENTER;
      CCamera::CameraControl.SetTarget(&Player1.posX, &Player1.posY);
-     SDL_WM_SetCaption("Adventure", NULL );
+     //SDL_WM_SetCaption("Adventure", NULL );
      ActionControl.OnLoad();
 	 return true;
 }

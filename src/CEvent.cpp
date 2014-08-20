@@ -34,12 +34,14 @@ void CEvent::OnEvent(SDL_Event* Event) {
           }
           
           case SDL_KEYDOWN: {
-            OnKeyDown(Event->key.keysym.sym,Event->key.keysym.mod,Event->key.keysym.unicode);
+			// Event has to be cast to a SDL_Keyboard event?
+            //OnKeyDown(Event->keysym);
             break;
           }
           
           case SDL_KEYUP: {
-            OnKeyUp(Event->key.keysym.sym,Event->key.keysym.mod,Event->key.keysym.unicode);
+			// Event has to be cast to a SDL_Keyboard event?
+			//OnKeyUp(Event->key.keysym.sym,Event->key.keysym.mod,Event->key.keysym.unicode);
             break;
           }
           
@@ -101,11 +103,11 @@ void CEvent::OnInputBlur() {
     //Pure virtual, do nothing
 }
  
-void CEvent::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
+void CEvent::OnKeyDown(SDL_Keysym sym) {
     //Pure virtual, do nothing
 }
  
-void CEvent::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode) {
+void CEvent::OnKeyUp(SDL_Keysym sym) {
     //Pure virtual, do nothing
 }
  

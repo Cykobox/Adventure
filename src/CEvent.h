@@ -11,8 +11,8 @@ class CEvent {
              virtual void OnEvent(SDL_Event* Event);
              virtual void OnInputFocus();
              virtual void OnInputBlur();
-             virtual void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
-             virtual void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
+			 virtual void OnKeyDown(SDL_Keysym sym);
+			 virtual void OnKeyUp(SDL_Keysym sym);
              virtual void OnMouseFocus();
              virtual void OnMouseBlur();
              virtual void OnMouseMove(int mX, int mY, int relX, int relY, bool Left,bool Right,bool Middle);

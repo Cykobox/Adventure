@@ -29,6 +29,10 @@ class AdvGame : public CEvent {
 		  bool Running;
               
           SDL_Surface* Surf_Display;
+
+		  SDL_Window* mpMainWindow;
+		  SDL_Renderer *mpRenderer;
+
               
           CEnemy Enemy;                     //This is the test Enemy;
 		  CEnemy Enemy2;
@@ -60,8 +64,8 @@ class AdvGame : public CEvent {
           void OnLoop();
           void OnRender();
           void OnCleanup();
-          void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
-          void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
+          void OnKeyDown(SDL_Keysym sym);
+		  void OnKeyUp(SDL_Keysym sym);
           void Reset();
 };
 

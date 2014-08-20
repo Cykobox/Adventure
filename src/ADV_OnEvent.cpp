@@ -8,7 +8,7 @@ void AdvGame::OnExit() {
      Running = false;     
 }
 
-void AdvGame::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
+void AdvGame::OnKeyDown(SDL_Keysym sym) {
 	switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
           case (GFX_MODE_PC): {
                switch (sym) {

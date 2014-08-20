@@ -2,7 +2,10 @@
 #include <SDL.h>
 #include "ADV.h"
 
-AdvGame::AdvGame() {
+AdvGame::AdvGame() :
+	mpMainWindow(NULL),
+	mpRenderer(NULL)
+{
     Surf_Display = NULL;
     Menu_Vis = true;
     Running = true;
