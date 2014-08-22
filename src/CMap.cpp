@@ -9,9 +9,10 @@ CMap::CMap(){
 bool CMap::OnLoad(char* File) {
      TileList.clear();
      
-     FILE* FileHandle = fopen(File, "r");
-     
-     if(FileHandle == NULL) {
+	 FILE* pFileHandle = NULL;
+	 
+	 if( fopen_s( &pFileHandle, File, "r" ) )
+	 {
           return false;
      }
      
@@ -19,13 +20,13 @@ bool CMap::OnLoad(char* File) {
              for(int X = 0; X < MAP_WIDTH; X++) {
                    MTile tempTile;
                    
-                   fscanf(FileHandle, "%d:%d ", &tempTile.TileID, &tempTile.TypeID);
+                   fscanf_s(pFileHandle, "%d:%d ", &tempTile.TileID, &tempTile.TypeID);
                    
                    TileList.push_back(tempTile);
              }
-             fscanf(FileHandle, "/n");
+             fscanf_s(pFileHandle, "/n");
      }
-     fclose(FileHandle);
+     fclose(pFileHandle);
      
      return true;
 

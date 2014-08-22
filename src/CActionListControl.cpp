@@ -81,14 +81,14 @@ void ActionListControl::MessageAction(){
 	CAction tempAction = ActionList.front();
 	int n;
 	char mess[128];
-	n = sprintf(mess, "%s", tempAction.sMessage);
+	n = sprintf_s(mess, _countof(mess), "%s", tempAction.sMessage);
 	Messages.AddMessage(mess, 0, 0, 0);
 }
 
 void ActionListControl::QuickMessage(std::string sMess){
 	int n;
 	char mess[128];
-	n = sprintf(mess, "%s", sMess.c_str());
+	n = sprintf_s(mess, _countof(mess), "%s", sMess.c_str());
 	Messages.AddMessage(mess, 0, 0, 0);
 }
 

@@ -58,23 +58,31 @@ bool CMenu::OnLoad() {
 }
 
 void CMenu::OnRender(CPlayer* Player1, SDL_Surface* Surf_Display, int X, int Y){
-	 int n;
+	 sprintf_s(T_HP_LABEL.Text, _countof(T_HP_LABEL.Text), "HP: %d / %d", Player1->CUR_HP, Player1->MAX_HP);
+	 sprintf_s(T_MP_LABEL.Text, _countof(T_MP_LABEL.Text), "MP: %d / %d", Player1->CUR_MP, Player1->MAX_MP);
+	 sprintf_s(T_AP_LABEL.Text, _countof(T_AP_LABEL.Text), "AP: %d / %d", Player1->CUR_AP, Player1->MAX_AP);
+	 if (Player1->TargetingSys.Targeting_Mode == true)
+	 {
+		 sprintf_s(T_TARGETING_MODE.Text, _countof(T_TARGETING_MODE.Text), "Targeting Mode = True");
+	 }
+	 else
+	 {
+		 sprintf_s(T_TARGETING_MODE.Text, _countof(T_TARGETING_MODE.Text), "Targeting Mode = False");
+	 }
 
-	 n = sprintf(T_HP_LABEL.Text, "HP: %d / %d", Player1->CUR_HP, Player1->MAX_HP);
-	 n = sprintf(T_MP_LABEL.Text, "MP: %d / %d", Player1->CUR_MP, Player1->MAX_MP);
-	 n = sprintf(T_AP_LABEL.Text, "AP: %d / %d", Player1->CUR_AP, Player1->MAX_AP);
-	 if (Player1->TargetingSys.Targeting_Mode == true) {n = sprintf(T_TARGETING_MODE.Text, "Targeting Mode = True");}
-	 if (Player1->TargetingSys.Targeting_Mode == false) {n = sprintf(T_TARGETING_MODE.Text, "Targeting Mode = False");}
-	 n = sprintf(T_Facing.Text, "Character Facing = %d", Player1->Facing);
-	 if (Player1->Target != NULL) {
-		 n = sprintf(T_Tar_X.Text, "Tar X=%d, Y=%d", Player1->TargetingSys.Target->posX, Player1->TargetingSys.Target->posY);
-		 n = sprintf(T_Tar_Y.Text, "Tar HP:%d/%d", Player1->TargetingSys.Target->Cur_HP, Player1->TargetingSys.Target->Max_HP);
+	 sprintf_s(T_Facing.Text, _countof(T_Facing.Text), "Character Facing = %d", Player1->Facing);
+
+	 if (Player1->Target != NULL)
+	 {
+		 sprintf_s(T_Tar_X.Text, _countof(T_Tar_X.Text), "Tar X=%d, Y=%d", Player1->TargetingSys.Target->posX, Player1->TargetingSys.Target->posY);
+		 sprintf_s(T_Tar_Y.Text, _countof(T_Tar_Y.Text), "Tar HP:%d/%d", Player1->TargetingSys.Target->Cur_HP, Player1->TargetingSys.Target->Max_HP);
 	 }
-	 else {
-		 n = sprintf(T_Tar_X.Text, "Target X = , Target Y = ");
-		 n = sprintf(T_Tar_Y.Text, "Target HP:   /  ");
+	 else
+	 {
+		 sprintf_s(T_Tar_X.Text, _countof(T_Tar_X.Text), "Target X = , Target Y = ");
+		 sprintf_s(T_Tar_Y.Text, _countof(T_Tar_Y.Text), "Target HP:   /  ");
 	 }
-	 n = sprintf(Name.Text, Player1->Char_Name);
+	 sprintf_s(Name.Text, _countof(Name.Text), Player1->Char_Name);
 	 
 	 SDL_FillRect(Surf_Menu, NULL, 0x00000);
 	 Name.OnRender(Surf_Menu);

@@ -16,7 +16,7 @@ bool CPlayer::OnLoad(char* File, int Width, int Height, bool Animate, bool Trans
      TargetingSys.OnLoad("./images/pc_Target.bmp", "./images/pc_PossTarget.bmp");
 	 TargetingSys.Targeting_Mode = false;
 
-	 MAX_HP = sprintf(Char_Name, "Enix");
+	 MAX_HP = sprintf_s(Char_Name, 14, "Enix");
 	 MAX_HP = 370;
 	 CUR_HP = 200;
 	 MAX_MP = 10;

@@ -24,21 +24,22 @@ bool CArea::OnLoad(char* File) {
 	int En_Num;
 	char TilesetFile[255];
     
-	FILE* FileHandle = fopen(File, "r");
+	FILE* pFileHandle = NULL;
 
-    if(FileHandle == NULL) {
+	if(fopen_s( &pFileHandle, File, "r") )
+	{
 		return false;
     }
      
-    fscanf(FileHandle, "%s\n", TilesetFile);
+    fscanf_s(pFileHandle, "%s\n", TilesetFile, _countof(TilesetFile));
      
     if((Surf_Area_Tileset = CSurface::OnLoad(TilesetFile)) == false) {
-		fclose(FileHandle);
+		fclose(pFileHandle);
 		return false;
     }
 
-    fscanf(FileHandle, "%d\n", &AreaSize);
-    fscanf(FileHandle, "%d:%d ", &Area_Enemy, &En_Num); //"x:y " X = types of enemies, y = number of enemies of type X
+    fscanf_s(pFileHandle, "%d\n", &AreaSize);
+    fscanf_s(pFileHandle, "%d:%d ", &Area_Enemy, &En_Num); //"x:y " X = types of enemies, y = number of enemies of type X
 	 
 	//Creates and pushes an new Enemy into Enemy List with with ID = Area_Enemy, En_Num times... 
 	while (Area_Enemy != -1) {
@@ -49,20 +50,20 @@ bool CArea::OnLoad(char* File) {
 			for (int i = 0; i < En_Num; i++) {
 				Game.EnemyList.push_back(Etemp);
 			}
-		fscanf(FileHandle, "%d:%d ", &Area_Enemy, &En_Num);
+		fscanf_s(pFileHandle, "%d:%d ", &Area_Enemy, &En_Num);
 	 }
 
-	 fscanf(FileHandle, "\n");
+	 fscanf_s(pFileHandle, "\n");
 
      for(int X = 0; X < AreaSize; X++) {
              for(int Y = 0; Y < AreaSize; Y++) {
                      char MapFile[255];
                      
-                     fscanf(FileHandle, "%s ", MapFile);
+                     fscanf_s(pFileHandle, "%s ", MapFile, _countof(MapFile));
 
                      CMap tempMap;
                      if(tempMap.OnLoad(MapFile) == false) {
-                          fclose(FileHandle);
+                          fclose(pFileHandle);
                           return false;
                      }
                      
@@ -70,10 +71,10 @@ bool CArea::OnLoad(char* File) {
                      
                      MapList.push_back(tempMap);
              }
-             fscanf(FileHandle, "\n");
+             fscanf_s(pFileHandle, "\n");
      }
      
-     fclose(FileHandle);
+     fclose(pFileHandle);
      AreaControl.LoadEnemyList();
      return true;
 }
@@ -101,10 +102,16 @@ void CArea::LoadEnemyList() {
 			NumEnemies++;
 		}
 
-		FILE* EnemyFile = fopen("./data/Elist.data", "r");			//Enemy List File
+		FILE* pEnemyFile = NULL;
+		if (fopen_s(&pEnemyFile, "./data/Elist.data", "r"))
+		{
+			// Error loading enemies.
+			// need to log and bail.
+			return;
+		}
 
 		for (int i = 0; i < TempID; i++) {					//Go through file, line by line until you get to the line that is = TempID
-			fscanf(EnemyFile, "%s\n", EnemyInfo);//Each Line is One Enemy ID... so ID 1 = Line 2... line 0 = layout
+			fscanf_s(pEnemyFile, "%s\n", EnemyInfo, _countof(EnemyInfo));//Each Line is One Enemy ID... so ID 1 = Line 2... line 0 = layout
 			//fprintf(LogFile, "Enemyinfo = %s\n", EnemyInfo);
 		}
 
@@ -114,8 +121,8 @@ void CArea::LoadEnemyList() {
 		char PCImage_File[30];
 
 		//               ID,Name hp mp ap at ap df dp as ms ex gp I1 I2 I3 PC
-		fscanf(EnemyFile, "%d:%s :%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%s \n", &TempID2, EName, &HP, &MP, &AP, 
-			&Attack, &AttackPer, &Defense, &DefensePer, &AttackSpeed, &MoveSpeed, &Experience, &Gold, &Item1, &Item2, &Item3, PCImage_File);
+		fscanf_s(pEnemyFile, "%d:%s :%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%s \n", &TempID2, EName, _countof(EName), &HP, &MP, &AP, 
+			&Attack, &AttackPer, &Defense, &DefensePer, &AttackSpeed, &MoveSpeed, &Experience, &Gold, &Item1, &Item2, &Item3, PCImage_File, _countof(PCImage_File));
 
 		for (int i = EnemyQueue; i < NumEnemies; i++){
 			Game.EnemyList[EnemyQueue].Name = EName;
@@ -134,7 +141,7 @@ void CArea::LoadEnemyList() {
 			Game.EnemyList[EnemyQueue].PCIMAGE_FILE = *PCImage_File;
 			EnemyQueue++;
 		}
-		fclose (EnemyFile); 
+		fclose (pEnemyFile); 
 		
 	}//end of while loop
 

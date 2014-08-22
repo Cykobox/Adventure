@@ -10,13 +10,12 @@ CMessage::CMessage() {
 bool CMessage::OnLoad() {
 switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
      case (GFX_MODE_PC): {
-          int n;
           //SDL_FillRect(Surf_Message, NULL, 0x00000); //I Still don't know why this doesn't work, but it kills it so...
           Surf_Message = CSurface::OnLoad("./images/MessageBar.bmp");
           
           for (int i = 0; i < 19; i++) {
               MessageArray[i].OnLoad("./fonts/PC-Font.ttf", 22);
-              n = sprintf(MessageArray[i].Text, " ");
+              sprintf_s(MessageArray[i].Text, _countof(MessageArray[i].Text), " ");
           }
           MessageArray[0].X = 15;
           MessageArray[0].Y = WHEIGHT - 20;
@@ -57,13 +56,12 @@ void CMessage::OnRender(SDL_Surface* Surf_Display) {
 }
 
 void CMessage::AddMessage(char* Message, int X, int Y, int Length) {
-     int n;
 	 switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
      case (GFX_MODE_PC): {
           for (int i = 4; i > -1; i--) {
-              n = sprintf(MessageArray[i].Text, MessageArray[i-1].Text);
+			  sprintf_s(MessageArray[i].Text, _countof(MessageArray[i].Text), MessageArray[i - 1].Text);
           }
-          n = sprintf(MessageArray[0].Text, Message);
+		  sprintf_s(MessageArray[0].Text, _countof(MessageArray[0].Text), Message);
           
 		  break;
      }
