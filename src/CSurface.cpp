@@ -1,3 +1,4 @@
+
 #include "CSurface.h"
 
 CSurface::CSurface() {                    
@@ -12,7 +13,7 @@ SDL_Surface* CSurface::OnLoad(char* File) {
           return NULL;
      }
      
-     Surf_Return = SDL_DisplayFormat(Surf_Temp);
+     //Surf_Return = SDL_DisplayFormat(Surf_Temp);
      SDL_FreeSurface(Surf_Temp);
      
      return Surf_Return;
@@ -25,15 +26,15 @@ bool CSurface::OnDraw(SDL_Surface* Surf_Dest, SDL_Surface* Surf_Src, int X, int 
      
      SDL_Rect DestR;   //defines a sdl Rectrangle named DestR
      
-     DestR.x = X;      //destR.x is the x value, where on the horizontal plane, to draw the image
-     DestR.y = Y;      //destr.y is the y value, where on the vertical line, to draw the image
+     DestR.x = X;      //DestR.x is the x value, where on the horizontal plane, to draw the image
+     DestR.y = Y;      //DestR.y is the y value, where on the vertical line, to draw the image
           
      SDL_BlitSurface(Surf_Src, NULL, Surf_Dest, &DestR);
      return true;
 }
 
 bool CSurface::OnDraw(SDL_Surface* Surf_Dest, SDL_Surface* Surf_Src, int X, int Y, int X2, int Y2, int W, int H) {
-     if (Surf_Dest == NULL || Surf_Src == NULL) {
+     if (Surf_Dest == NULL || Surf_Src == NULL) { 
          return false;
      }
      
@@ -58,7 +59,7 @@ bool CSurface::Transparent(SDL_Surface* Surf_Dest, int R, int G, int B) {
           return false;             
      }
 
-     SDL_SetColorKey(Surf_Dest, SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB(Surf_Dest->format, R, G, B));
+     //SDL_SetColorKey(Surf_Dest, SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB(Surf_Dest->format, R, G, B));
      
      return true;
 }

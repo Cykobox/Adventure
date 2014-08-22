@@ -6,7 +6,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include "Define.h"
-#include "CSurface.h"
+#include "CSurface.h" //Being replaced by... CRenderable.h
 #include "CAnimate.h"
 #include "CEvent.h"
 #include "CEntity.h"
@@ -22,7 +22,7 @@
 #include "CActionListControl.h"
 #include "CTargeting.h"
 #include "SItem.h"
-
+#include "CRenderable.h"
 
 class AdvGame : public CEvent {
       private:
@@ -33,7 +33,7 @@ class AdvGame : public CEvent {
 		  SDL_Window* mpMainWindow;
 		  SDL_Renderer *mpRenderer;
 
-              
+          
           CEnemy Enemy;                     //This is the test Enemy;
 		  CEnemy Enemy2;
 		  CEnemy Enemy3;

@@ -32,6 +32,7 @@
     <ClCompile Include="src\CMenu.cpp" />
     <ClCompile Include="src\CMessage.cpp" />
     <ClCompile Include="src\CPlayer.cpp" />
+    <ClCompile Include="src\CRenderable.cpp" />
     <ClCompile Include="src\CSurface.cpp" />
     <ClCompile Include="src\CTargeting.cpp" />
     <ClCompile Include="src\CText.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="src\CMenu.h" />
     <ClInclude Include="src\CMessage.h" />
     <ClInclude Include="src\CPlayer.h" />
+    <ClInclude Include="src\CRenderable.h" />
     <ClInclude Include="src\CSurface.h" />
     <ClInclude Include="src\CTargeting.h" />
     <ClInclude Include="src\CText.h" />

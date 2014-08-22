@@ -31,7 +31,7 @@ class CEntity {
       protected:
                 CAnimation      Anim_Control;
                 
-                SDL_Surface*    Surf_Entity;
+                SDL_Surface*    Surf_Entity;  // The surface or "Texture" of the entity... its picture. 
       
       public:
              int                posX;             //The Position of the Character, X coordinate, in tiles.
