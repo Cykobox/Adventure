@@ -37,9 +37,12 @@
     <ClCompile Include="src\CTargeting.cpp" />
     <ClCompile Include="src\CText.cpp" />
     <ClCompile Include="src\GFXMODE.cpp" />
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\MTile.cpp" />
     <ClCompile Include="src\SItem.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\TileSet.cpp" />
+    <ClCompile Include="src\tinyXML\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ADV.h" />
@@ -63,9 +66,14 @@
     <ClInclude Include="src\CText.h" />
     <ClInclude Include="src\Define.h" />
     <ClInclude Include="src\GFXMODE.h" />
+    <ClInclude Include="src\Log.h" />
+    <ClInclude Include="src\Model.h" />
     <ClInclude Include="src\MTile.h" />
     <ClInclude Include="src\SInvItem.h" />
     <ClInclude Include="src\SItem.h" />
+    <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\TileSet.h" />
+    <ClInclude Include="src\tinyXML\tinyxml2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DC5915F0-0E31-4285-AF95-C8F07CAC6BC9}</ProjectGuid>

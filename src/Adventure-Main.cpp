@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <iostream>
 #include <SDL.h>
 #include "ADV.h"
 
@@ -45,10 +46,12 @@ AdvGame Game;
 
 int main(int argc, char *argv[])
 {
-	printf("Main start\n");
+	std::cout << "Main start\n";
 	#if defined(DEBUG) | defined(_DEBUG)
 		_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 	#endif
-	return Game.OnExecute();
-	
+	Game.OnExecute();
+
+	//system("PAUSE");
+	return false;
 }

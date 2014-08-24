@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{f442acfa-3a81-4635-9b29-cf416a8688e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{feaffcfd-ab99-4d47-aba8-7d544d79ef68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ADV_OnCleanup.cpp">
@@ -90,9 +96,6 @@
     <ClCompile Include="src\GFXMODE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\MTile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -101,6 +104,18 @@
     </ClCompile>
     <ClCompile Include="src\CRenderable.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Model.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TileSet.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tinyXML\tinyxml2.cpp">
+      <Filter>Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +190,21 @@
     </ClInclude>
     <ClInclude Include="src\CRenderable.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Log.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Texture.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Model.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileSet.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tinyXML\tinyxml2.h">
+      <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

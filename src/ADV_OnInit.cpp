@@ -19,10 +19,10 @@ bool AdvGame::OnInit() {
 
 	 // create our main window
 	 mpMainWindow = SDL_CreateWindow("Adventure",
-		 SDL_WINDOWPOS_UNDEFINED,
-		 SDL_WINDOWPOS_UNDEFINED,
-		 0, 0,
-		 SDL_WINDOW_FULLSCREEN_DESKTOP);
+		 SDL_WINDOWPOS_CENTERED,
+		 SDL_WINDOWPOS_CENTERED,
+		 640, 480,
+		 SDL_WINDOW_OPENGL);
 
 	 if (mpMainWindow == NULL)
 	 {
