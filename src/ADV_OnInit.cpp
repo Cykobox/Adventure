@@ -13,10 +13,6 @@ bool AdvGame::OnInit() {
      
      GFXMODE::GFXMODE_Control.CHANGE_GFX_MODE(GFX_MODE_PC);
      
-//     if((Surf_Display = SDL_SetVideoMode(WWIDTH, WHEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL) {
-//         return false;
-//     }
-
 	 // create our main window
 	 mpMainWindow = SDL_CreateWindow("Adventure",
 		 SDL_WINDOWPOS_CENTERED,

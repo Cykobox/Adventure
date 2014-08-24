@@ -5,18 +5,17 @@ CSurface::CSurface() {
 
 }
 
-SDL_Surface* CSurface::OnLoad(char* File) {
-     SDL_Surface* Surf_Temp = NULL;
-     SDL_Surface* Surf_Return = NULL;
+SDL_Surface* CSurface::OnLoad(char* File)
+{
+	SDL_Surface* Surf_Return = SDL_LoadBMP(File);
+
+	if ( Surf_Return == NULL )
+	{
+		// Error: Failed to load the surface
+        return NULL;
+    }
      
-     if((Surf_Temp = SDL_LoadBMP(File)) == NULL) {
-          return NULL;
-     }
-     
-     //Surf_Return = SDL_DisplayFormat(Surf_Temp);
-     SDL_FreeSurface(Surf_Temp);
-     
-     return Surf_Return;
+    return Surf_Return;
 }
 
 bool CSurface::OnDraw(SDL_Surface* Surf_Dest, SDL_Surface* Surf_Src, int X, int Y) {
