@@ -11,7 +11,7 @@ CEntityCol::CEntityCol() {
 
 
 CEntity::CEntity() {
-     Surf_Entity = NULL;
+	 Entity_Texture = NULL;
      
      posX = 0;
      posY = 0;
@@ -29,17 +29,18 @@ CEntity::CEntity() {
 CEntity::~CEntity() {
 }
 
-bool CEntity::OnLoad(char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames) {
-     if((Surf_Entity = CSurface::OnLoad(File)) == NULL ) {
+bool CEntity::OnLoad(SDL_Renderer *pRenderer, char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames) {
+	if (CRenderable::LoadTexture(pRenderer, File) == NULL) {
          return false;
      }
 
      Anim_Bool = Animate;
      Trans_Bool = Transparency;
      
+	 /*  SETS TRANSPARENCY IN PICTURE.... NEEDS TO BE REPLACES IN NEW SDL2 System... 
      if (Trans_Bool == true) {
      CSurface::Transparent(Surf_Entity, 255, 0, 255);
-     }
+     } */
      
      this->Width = Width;
      this->Height = Height;
@@ -63,10 +64,20 @@ void CEntity::OnLoop() {
      }
 }
 
-void CEntity::OnRender(SDL_Surface* Surf_Display) {
+void CEntity::OnRender(SDL_Renderer* pRenderer) {
      switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
           case GFX_MODE_PC: {
-               CSurface::OnDraw(Surf_Display, Surf_Entity, (posX - CCamera::CameraControl.GetX()) * TILE_SIZE, (posY - CCamera::CameraControl.GetY()) * TILE_SIZE);
+			   SDL_Rect DesRect; // Destination Rect
+			   SDL_Rect SrcRect; // Source Rect
+			   SrcRect.h = TILE_SIZE;
+			   SrcRect.w = TILE_SIZE;
+			   SrcRect.x = 0;
+			   SrcRect.y = 0;
+			   DesRect.h = TILE_SIZE;
+			   DesRect.w = TILE_SIZE;
+			   DesRect.x = (posX - CCamera::CameraControl.GetX()) * TILE_SIZE;
+			   DesRect.y = (posY - CCamera::CameraControl.GetY()) * TILE_SIZE;
+			   CRenderable::RenderTextureToScreen(pRenderer, SrcRect, DesRect);
                break;
           }
           case GFX_MODE_8BIT: {
@@ -87,11 +98,11 @@ void CEntity::OnRender(SDL_Surface* Surf_Display) {
 }
 
 void CEntity::OnCleanup() {
-     if(Surf_Entity) {
-         SDL_FreeSurface(Surf_Entity);
+	if (Entity_Texture) {
+		SDL_DestroyTexture(Entity_Texture);
      }
      
-     Surf_Entity = NULL;    
+	Entity_Texture = NULL;
 }
      
 void CEntity::OnAnimate() {

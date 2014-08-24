@@ -14,6 +14,7 @@ class CRenderable {
 		virtual void OnRender(SDL_Renderer* pRenderer) = 0;
 		bool RenderTextureToScreen(SDL_Renderer* pRenderer, SDL_Rect SrcRect, SDL_Rect DestRect);
 		bool LoadTexture(SDL_Renderer* Cur_Renderer, char* File);
+		bool LoadTextureWithTransparency(SDL_Renderer* Cur_Renderer, char* File);
 		bool DestroyTextures();
 };
 

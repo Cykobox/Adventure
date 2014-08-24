@@ -169,9 +169,9 @@ void CArea::LoadEnemyList() {
 			}
 		} while (match == true);
 		Game.EnemyList[i].posY = x;
-		if (Game.EnemyList[i].OnLoad() == false){				//Finish Each Enemy's OnLoad Functionalities
-			Game.ActionControl.QuickMessage("Error Loading Enemies...");
-		}
+		//if (Game.EnemyList[i].OnLoad() == false){				//Finish Each Enemy's OnLoad Functionalities
+		//	Game.ActionControl.QuickMessage("Error Loading Enemies...");
+		//}
 		CEntity::EntityList.push_back(&Game.EnemyList[i]);		//Put Enemy in the EntityList
 	} //End of For Loop
 }//end of function definition

@@ -33,7 +33,7 @@ bool AdvGame::OnInit() {
 	 mpRenderer = SDL_CreateRenderer(mpMainWindow, -1, SDL_RENDERER_PRESENTVSYNC);
 
 
-     if(Player1.OnLoad("./images/pc_char-hi.bmp", 40, 40, false, false, 1) == false) {
+     if(Player1.OnLoad(mpRenderer, "./images/pc_char-hi.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
 
@@ -48,7 +48,7 @@ bool AdvGame::OnInit() {
          return false;
      }
      
-     if (Enemy.OnLoad("./images/pc_001.bmp", 40, 40, false, false, 1) == false) {
+	 if (Enemy.OnLoad(mpRenderer, "./images/pc_001.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
 
@@ -56,14 +56,14 @@ bool AdvGame::OnInit() {
      Enemy.posX = 3;                                 //Set default enemy position.
      Enemy.posY = 3;
 
-	 if (Enemy2.OnLoad("./images/pc_001.bmp", 40, 40, false, false, 1) == false) {
+	 if (Enemy2.OnLoad(mpRenderer, "./images/pc_001.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
      CEntity::EntityList.push_back(&Enemy2);          //Put test enemy into Entity List
      Enemy2.posX = 10;                                 //Set default enemy position.
      Enemy2.posY = 2;
 
-	 if (Enemy3.OnLoad("./images/pc_001.bmp", 40, 40, false, false, 1) == false) {
+	 if (Enemy3.OnLoad(mpRenderer, "./images/pc_001.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
      CEntity::EntityList.push_back(&Enemy3);          //Put test enemy into Entity List
@@ -86,7 +86,6 @@ bool AdvGame::OnInit() {
 	                    //SDL_DEFAULT_REPEAT_INTERVAL * 5 = interval = how fast it repeats... in milliseconds (Default is build in SDL default... i *5'd it to slow it down.)
      CCamera::CameraControl.TargetMode = TARGET_MODE_CENTER;
      CCamera::CameraControl.SetTarget(&Player1.posX, &Player1.posY);
-     //SDL_WM_SetCaption("Adventure", NULL );
      ActionControl.OnLoad();
 	 return true;
 }

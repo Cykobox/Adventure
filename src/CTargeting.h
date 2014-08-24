@@ -2,17 +2,15 @@
     #define _CTARGETING_H_
 
 #include "CSurface.h"
+#include "CRenderable.h"
 #include "GFXMODE.h"
 #include "Define.h"
 #include "CCamera.h"
 #include "CEntity.h"
 #include "CEnemy.h"
 
-class CTargeting {
+class CTargeting : public CRenderable{
 	public:
-
-		SDL_Surface*    Surf_Target;  //the surface for the actual target..
-		SDL_Surface*    Surf_Poss_Target;
 
 		bool Targeting_Mode;
 			
@@ -22,8 +20,8 @@ class CTargeting {
 
 		CTargeting();
 
-		bool OnLoad(char* File, char* File2);
-		void OnRender(SDL_Surface* Surf_Display);
+		bool OnLoad(SDL_Renderer *pRenderer, char* File, char* File2);
+		void OnRender(SDL_Renderer* pRenderer);
 		void OnCleanup();
 
 };

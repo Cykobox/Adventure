@@ -9,11 +9,11 @@ CPlayer::CPlayer() {
 	Facing = 0;
 }
 
-bool CPlayer::OnLoad(char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames) {
-     if (CEntity::OnLoad(File, Width, Height, Animate, Transparency, MaxFrames) == false) {
+bool CPlayer::OnLoad(SDL_Renderer *pRenderer, char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames) {
+	if (CEntity::OnLoad(pRenderer, File, Width, Height, Animate, Transparency, MaxFrames) == false) {
           return false;
      }
-     TargetingSys.OnLoad("./images/pc_Target.bmp", "./images/pc_PossTarget.bmp");
+     TargetingSys.OnLoad(pRenderer, "./images/pc_Target.bmp", "./images/pc_PossTarget.bmp");
 	 TargetingSys.Targeting_Mode = false;
 
 	 MAX_HP = sprintf_s(Char_Name, 14, "Enix");
@@ -42,9 +42,9 @@ void CPlayer::OnMove(float MoveX, float MoveY) {
 	CEntity::OnMove(MoveX, MoveY);
 }
 
-void CPlayer::OnRender(SDL_Surface* Surf_Display) {
-     CEntity::OnRender(Surf_Display);
-	 TargetingSys.OnRender(Surf_Display);
+void CPlayer::OnRender(SDL_Renderer *pRenderer) {
+	CEntity::OnRender(pRenderer);
+	TargetingSys.OnRender(pRenderer);
 }
 
 void CPlayer::OnCleanup(){

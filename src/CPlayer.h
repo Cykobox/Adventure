@@ -143,10 +143,10 @@ class CPlayer : public CEntity {
 		void FindNextTarget();
 		void LockTarget();
 
-        bool OnLoad(char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames);
+		bool OnLoad(SDL_Renderer *pRenderer, char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames);
         void OnMove(float MoveX, float MoveY);
         void OnLoop();
-        void OnRender(SDL_Surface* Surf_Display);
+		void OnRender(SDL_Renderer *mRenderer);
         void OnCleanup();
         void OnAnimate();
         void OnCollision(CEntity* Entity);
