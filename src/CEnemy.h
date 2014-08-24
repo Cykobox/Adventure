@@ -38,15 +38,15 @@ class CEnemy : public CEntity {
 			 char PCIMAGE_FILE;
 			 char EIGHTBITFILE;
 
-             bool OnLoad(char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames);
-             bool OnLoad();
+			 bool OnLoad(SDL_Renderer *pRenderer, char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames);
+			 bool OnLoad(SDL_Renderer *pRenderer);
 			 void MoveCheck();
 			 void Death();
 			 void OnLoop();
-             void OnRender(SDL_Surface* Surf_Display);
+             void OnRender(SDL_Renderer *pRenderer);
              void OnCleanup();
              void OnAnimate();
-             void OnCollision(CEntity* Entity);
+             void OnCollision(CEntity *Entity);
              void HPCheck();
 };
 

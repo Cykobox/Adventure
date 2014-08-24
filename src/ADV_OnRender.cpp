@@ -32,8 +32,6 @@ switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
           if (Menu_Vis) {                                    //If the Menu is open, render the menu on screen too.
                Menu.OnRender(&Player1, Surf_Display, 640, 0);
           }
-
-          //SDL_Flip(Surf_Display);                            //Put that shits on da screen bitchez!!
           -------------------------------------------------------------------------------------------------------------
 		  */
 		  

@@ -9,6 +9,7 @@
 #include "CFPS.h"
 #include "CSurface.h"
 #include "Define.h"
+#include "CRenderable.h"
 
 enum {
      ENTITY_TYPE_GENERIC = 0,  //generic, non-type, entity
@@ -24,14 +25,14 @@ enum {
      ENTITY_FLAG_MAPONLY  = 0x00000002,
 };
 
-class CEntity {
+class CEntity : public CRenderable{
       public:
              static std::vector<CEntity*> EntityList;
              
       protected:
                 CAnimation      Anim_Control;
                 
-                SDL_Surface*    Surf_Entity;  // The surface or "Texture" of the entity... its picture. 
+                SDL_Texture*    Entity_Texture;  // "Texture" of the entity... its picture. 
       
       public:
              int                posX;             //The Position of the Character, X coordinate, in tiles.
@@ -52,9 +53,9 @@ class CEntity {
              virtual ~CEntity();               //Destructor Function
              
       public:
-             virtual bool OnLoad(char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames);
+             virtual bool OnLoad(SDL_Renderer *pRenderer, char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames);
              virtual void OnLoop();
-             virtual void OnRender(SDL_Surface* Surf_Display);
+             virtual void OnRender(SDL_Renderer *pRenderer);
              virtual void OnCleanup();          //Basically clears the memory of the surface before you delete it.
              virtual void OnAnimate();
              virtual void OnCollision(CEntity* Entity);
@@ -70,8 +71,8 @@ class CEntityCol {
       public:
              static std::vector<CEntityCol>       EntityColList;
       public:
-             CEntity* EntityA;
-             CEntity* EntityB;
+             CEntity *EntityA;
+             CEntity *EntityB;
       public:
              CEntityCol();
 };

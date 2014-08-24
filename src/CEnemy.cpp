@@ -8,8 +8,8 @@ CEnemy::CEnemy() {
      Type = ENTITY_TYPE_ENEMY;  
 }
 
-bool CEnemy::OnLoad() {
-	if (CEntity::OnLoad(&PCIMAGE_FILE, TILE_SIZE, TILE_SIZE, false, false, 0) == false){
+bool CEnemy::OnLoad(SDL_Renderer *pRenderer) {
+	if (CEntity::OnLoad(pRenderer, &PCIMAGE_FILE, TILE_SIZE, TILE_SIZE, false, false, 0) == false){
 		return false;
 	}
 	Cur_HP = Max_HP;
@@ -21,8 +21,8 @@ bool CEnemy::OnLoad() {
 
 	return true;
 }
-bool CEnemy::OnLoad(char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames) {
-     if (CEntity::OnLoad(File, Width, Height, Animate, Transparency, MaxFrames) == false) {
+bool CEnemy::OnLoad(SDL_Renderer *pRenderer, char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames) {
+	if (CEntity::OnLoad(pRenderer, File, Width, Height, Animate, Transparency, MaxFrames) == false) {
           return false;
      }
 	 Name = "Skeleton";
@@ -52,8 +52,8 @@ void CEnemy::OnLoop() {
 	CEntity::OnLoop();
 }
 
-void CEnemy::OnRender(SDL_Surface* Surf_Display) {
-     CEntity::OnRender(Surf_Display);
+void CEnemy::OnRender(SDL_Renderer *pRenderer) {
+     CEntity::OnRender(pRenderer);
 }
 
 void CEnemy::OnCleanup(){
