@@ -9,14 +9,20 @@
 #include "CTargeting.h"
 #include "CEnemy.h"
 #include "CEntity.h"
+#include <iostream>
 
 CMenu::CMenu() {
-     Surf_Menu = NULL;
+	My_Texture = NULL;
 }
 
-bool CMenu::OnLoad() { 
-	
-	if((Surf_Menu = CSurface::OnLoad("./images/menu-back.bmp")) == NULL ){
+bool CMenu::OnLoad(SDL_Renderer *pRenderer, int height, int width, int x, int y) {
+	Menu_Width = width;
+	Menu_Height = height;
+	Menu_X = x;
+	Menu_Y = y;
+
+	My_Texture = SDL_CreateTexture(pRenderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, Menu_Width, Menu_Width);
+	if(LoadTexture(pRenderer, ("./images/menu-back.bmp")) == false){
 		return false;
 	}
 
@@ -57,7 +63,7 @@ bool CMenu::OnLoad() {
 	 return true;
 }
 
-void CMenu::OnRender(CPlayer* Player1, SDL_Surface* Surf_Display, int X, int Y){
+void CMenu::OnRender(CPlayer* Player1, SDL_Renderer* pRenderer){
 	 sprintf_s(T_HP_LABEL.Text, _countof(T_HP_LABEL.Text), "HP: %d / %d", Player1->CUR_HP, Player1->MAX_HP);
 	 sprintf_s(T_MP_LABEL.Text, _countof(T_MP_LABEL.Text), "MP: %d / %d", Player1->CUR_MP, Player1->MAX_MP);
 	 sprintf_s(T_AP_LABEL.Text, _countof(T_AP_LABEL.Text), "AP: %d / %d", Player1->CUR_AP, Player1->MAX_AP);
@@ -84,20 +90,35 @@ void CMenu::OnRender(CPlayer* Player1, SDL_Surface* Surf_Display, int X, int Y){
 	 }
 	 sprintf_s(Name.Text, _countof(Name.Text), Player1->Char_Name);
 	 
-	 SDL_FillRect(Surf_Menu, NULL, 0x00000);
-	 Name.OnRender(Surf_Menu);
-	 T_HP_LABEL.OnRender(Surf_Menu);
-	 T_MP_LABEL.OnRender(Surf_Menu);
-	 T_AP_LABEL.OnRender(Surf_Menu);
-	 T_TARGETING_MODE.OnRender(Surf_Menu);
-	 T_Facing.OnRender(Surf_Menu);
-	 T_Tar_X.OnRender(Surf_Menu);
-	 T_Tar_Y.OnRender(Surf_Menu);
-     CSurface::OnDraw(Surf_Display, Surf_Menu, X, Y);
+	 LoadTexture(pRenderer, ("./images/menu-back.bmp")); //makes the background of the menu grey, aka, loads the menu background
+	 
+	 //std::cout << "After Load Texture\n";
+	 
+	 SDL_SetRenderTarget(pRenderer, My_Texture); //Set our renderer to render all things to our My_Texture texture and not to screen... so keep the menu on one texture
+	 
+	 
+	 Name.OnRender(pRenderer);
+	 T_HP_LABEL.OnRender(pRenderer);
+	 T_MP_LABEL.OnRender(pRenderer);
+	 T_AP_LABEL.OnRender(pRenderer);
+	 T_TARGETING_MODE.OnRender(pRenderer);
+	 T_Facing.OnRender(pRenderer);
+	 T_Tar_X.OnRender(pRenderer);
+	 T_Tar_Y.OnRender(pRenderer);
+	 
+	 SDL_Rect DESRect;
+
+	 DESRect.h = Menu_Height;
+	 DESRect.w = Menu_Width;
+	 DESRect.x = Menu_X;
+	 DESRect.y = Menu_Y;
+
+	 SDL_SetRenderTarget(pRenderer, NULL);  // Set the place to render back to NULL, meaning "The Screen"
+	 SDL_RenderCopy(pRenderer, My_Texture, NULL, &DESRect); //Renders our My_Texture, with our menu drawn on it... to the screen.
 }
 
 void CMenu::OnCleanup(){
-     SDL_FreeSurface(Surf_Menu);
+     bool whocares = DestroyTextures();
      
 	 Name.OnCleanup();
 	 T_MP_LABEL.OnCleanup();
