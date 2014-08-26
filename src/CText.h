@@ -6,11 +6,11 @@
 #include <SDL_ttf.h>      
 #include "GFXMODE.h"
 #include "CSurface.h"
+#include "CRenderable.h"
 #include <string>
 
-class CText {
+class CText : public CRenderable{
       public:
-           SDL_Surface* Surf_Print;
            SDL_Color    T_Color;
            
            TTF_Font*    Font;
@@ -21,7 +21,7 @@ class CText {
       public:
            CText();
            void OnLoad(char* File, int Size);        //file for the font type, and size of the font
-           void OnRender(SDL_Surface* Surf_Display);
+           void OnRender(SDL_Renderer *pRenderer);
            void OnCleanup();
       
       

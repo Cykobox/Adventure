@@ -20,6 +20,8 @@ bool AdvGame::OnInit() {
 		 640, 480,
 		 SDL_WINDOW_OPENGL);
 
+
+
 	 if (mpMainWindow == NULL)
 	 {
 		 return false;
@@ -73,8 +75,8 @@ bool AdvGame::OnInit() {
 	 	 return false;
 	 }
      
-	 if (Menu.OnLoad() == false ){
-		 return false;
+	 if (Menu.OnLoad(mpRenderer, 600, 160, 0, 0) == false ){ // don't know if this is the right place to put the Menu... but just trying to put it on the screen.
+	 	 return false;
 	 }
 
      //SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL * 5);     //This sets the option where if you hold down a key, it acts like you keep pressing it.

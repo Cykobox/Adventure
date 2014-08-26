@@ -92,6 +92,6 @@ void ActionListControl::QuickMessage(std::string sMess){
 	Messages.AddMessage(mess, 0, 0, 0);
 }
 
-void ActionListControl::OnRenderMessage(SDL_Surface* Surf_Display){
-    Messages.OnRender(Surf_Display);
+void ActionListControl::OnRenderMessage(SDL_Renderer *pRenderer){
+    Messages.OnRender(pRenderer);
 }

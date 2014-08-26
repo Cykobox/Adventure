@@ -5,10 +5,10 @@
 #include <SDL.h>
 #include <SDL_image.h>        
 #include "CPlayer.h"
+#include "CRenderable.h"
 
-class CMenu {
+class CMenu : public CRenderable {
       public:             
-             SDL_Surface*      Surf_Menu;
              
              CText              Name;
 			 CText			    T_HP_LABEL;
@@ -18,11 +18,18 @@ class CMenu {
 			 CText			    T_Tar_X;
 			 CText				T_Tar_Y;
 			 CText				T_PAUSE;
-			 CText				T_Facing;
+			 CText				T_Facing; 
+			 
+	  public:
+	 
+				 int Menu_Width;
+				 int Menu_Height;
+				 int Menu_X;
+				 int Menu_Y;
       public:
              CMenu();
-             bool OnLoad();
-             void OnRender(CPlayer* Player1, SDL_Surface* Surf_Display, int X, int Y);
+             bool OnLoad(SDL_Renderer *pRenderer, int height, int width, int x, int y);
+             void OnRender(CPlayer* Player1, SDL_Renderer* pRenderer);
              void OnCleanup();
              
 };

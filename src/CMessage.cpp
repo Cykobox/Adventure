@@ -4,14 +4,13 @@
 #include <string>
 
 CMessage::CMessage() {
-    Surf_Message = NULL;                 
+    My_Texture = NULL;                 
 }
 
 bool CMessage::OnLoad() {
 switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
      case (GFX_MODE_PC): {
-          //SDL_FillRect(Surf_Message, NULL, 0x00000); //I Still don't know why this doesn't work, but it kills it so...
-          Surf_Message = CSurface::OnLoad("./images/MessageBar.bmp");
+          //Surf_Message = CSurface::OnLoad("./images/MessageBar.bmp");
           
           for (int i = 0; i < 19; i++) {
               MessageArray[i].OnLoad("./fonts/PC-Font.ttf", 22);
@@ -35,18 +34,27 @@ switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
 return true;
 }
 
-void CMessage::OnRender(SDL_Surface* Surf_Display) {
+void CMessage::OnRender(SDL_Renderer* pRenderer) {
      switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
          case (GFX_MODE_PC): {
-             CSurface::OnDraw(Surf_Display, Surf_Message, 0, 500); //draws the black first                      
-             for (int i = 0; i < 20; i++) {                      //This version, for PC graphics, draws the messages to a specific console area,
-                  MessageArray[i].OnRender(Surf_Display);        //and then draws the console area to the main surf_Display... it is set up however
-             }                                                   //For later versions, demonstrated below, to draw messages, anywhere on the screen
-             break;                                              //with their own X and Y coordinates, directly to the main surf_Display...
+			 LoadTexture(pRenderer, ("./images/MessageBar.bmp")); //draws the black first                      
+			 SDL_SetRenderTarget(pRenderer, My_Texture);          //Set the My_Texture of the message to be the target of the renderer so all things now get endered to that texture and not the screen
+			 for (int i = 0; i < 20; i++) {                      //This version, for PC graphics, draws the messages to the My_Texture of the Message object,
+                  MessageArray[i].OnRender(pRenderer);           //and then draws the message object's My_Texture to the screen... it is set up however
+             }													 //For later versions, demonstrated below, to draw messages, anywhere on the screen
+			 SDL_SetRenderTarget(pRenderer, NULL);// Set the place to render back to NULL, meaning "The SCreen"
+			 SDL_Rect DESRect;
+			 DESRect.h = 134;
+			 DESRect.w = 800;
+			 DESRect.x = 0;
+			 DESRect.y = 586;
+
+			 SDL_RenderCopy(pRenderer, My_Texture, NULL, &DESRect);      //Renders our My_Texture, with our menu drawn on it... to the screen.													 //with their own X and Y coordinates, directly to the Screen...	
+			 break;                                              
          }                                                        
          case (GFX_MODE_8BIT): {
               for (int i = 0; i < 20; i++) {
-                  MessageArray[i].OnRender(Surf_Display);
+				  MessageArray[i].OnRender(pRenderer);
               }
               break;
          }
@@ -71,7 +79,7 @@ void CMessage::AddMessage(char* Message, int X, int Y, int Length) {
 }
 
 void CMessage::OnCleanup() {
-     SDL_FreeSurface(Surf_Message);
+     bool whocares = DestroyTextures();
      for (int i = 0; i < 20; i++) {
          MessageArray[i].OnCleanup();
      }

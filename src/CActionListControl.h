@@ -34,7 +34,7 @@ class ActionListControl {
 		void MoveAction();
 		void MessageAction();
 		void QuickMessage(std::string sMess);
-		void OnRenderMessage(SDL_Surface* Surf_Display);
+		void OnRenderMessage(SDL_Renderer *pRenderer);
 
 
 };

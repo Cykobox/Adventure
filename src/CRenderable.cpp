@@ -1,4 +1,5 @@
 #include "CRenderable.h"
+#include <iostream>
 
 CRenderable::CRenderable(){
 	My_Texture = NULL;
@@ -16,10 +17,12 @@ bool CRenderable::LoadTextureWithTransparency(SDL_Renderer *Cur_Renderer, char* 
 }
 
 bool CRenderable::LoadTexture(SDL_Renderer* Cur_Renderer, char* File){
-	SDL_Surface* Surf_Temp = NULL;
+	SDL_Surface *Surf_Temp = NULL;
 	if ((Surf_Temp = SDL_LoadBMP(File)) == NULL) {
 		return false;
+		std::cout << "Failed to Load Texture\n";
 	}
+	std::cout << "Loaded" << File << "to surface\n";
 	My_Texture = SDL_CreateTextureFromSurface(Cur_Renderer, Surf_Temp);
 	SDL_FreeSurface(Surf_Temp);
 	return true;
