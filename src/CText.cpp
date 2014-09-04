@@ -1,4 +1,5 @@
 #include "CText.h"
+#include <iostream>
 
 
 CText::CText(){
@@ -23,8 +24,11 @@ void CText::OnRender(SDL_Renderer *pRenderer) {
 	 DesRect.x = X;
 	 DesRect.y = Y;
 	 
-	 SDL_QueryTexture(My_Texture, NULL, NULL, &DesRect.w, &DesRect.h); //Set the width and heights of the current texture.
-
+	 SDL_QueryTexture(My_Texture, NULL, NULL, &DesRect.w , &DesRect.h); //Set the width and heights of the current texture.
+	 
+	 std::cout << "Message = " << Text << "\n" << "X = " << DesRect.x << "; Y = " << DesRect.y << "; W = " << DesRect.w << "; H = " << DesRect.h << "\n";
+	 //debug tool
+	 
 	 SDL_RenderCopy(pRenderer, My_Texture, NULL, &DesRect);
 	 SDL_FreeSurface(Surf_Print); 
 }

@@ -1,5 +1,6 @@
 #include "CActionListControl.h"
 #include "CMessage.h"
+# include <iostream>
 
 ActionListControl::ActionListControl() {
 
@@ -10,7 +11,6 @@ void ActionListControl::OnLoad() {
 	ActionList.clear();
 	Press_A_To_Con = false;
 	fLocked = false;
-	Messages.AddMessage("Welcome to Adventure! w,a,s,d = Move, SpaceBar = Menu, Num Pad2 = Action", 0, 0, 0);
 }
 
 void ActionListControl::DoAction() {

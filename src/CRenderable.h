@@ -8,7 +8,7 @@ class CRenderable {
 	public:
 		CRenderable();
 
-		SDL_Texture* My_Texture;
+		SDL_Texture *My_Texture;
 		
 	public:	
 		//virtual void OnRender(SDL_Renderer* pRenderer);

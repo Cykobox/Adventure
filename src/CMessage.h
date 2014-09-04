@@ -16,7 +16,7 @@ class CMessage : public CRenderable {
              
              
       public:
-             bool OnLoad();
+             bool OnLoad(SDL_Renderer *pRenderer);
              void OnRender(SDL_Renderer *pRenderer);
              void OnCleanup();
              void AddMessage(char* Message, int X, int Y, int Length);             

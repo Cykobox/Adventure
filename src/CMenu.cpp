@@ -12,7 +12,7 @@
 #include <iostream>
 
 CMenu::CMenu() {
-	My_Texture = NULL;
+	//My_Texture = NULL;
 }
 
 bool CMenu::OnLoad(SDL_Renderer *pRenderer, int height, int width, int x, int y) {
@@ -21,7 +21,8 @@ bool CMenu::OnLoad(SDL_Renderer *pRenderer, int height, int width, int x, int y)
 	Menu_X = x;
 	Menu_Y = y;
 
-	My_Texture = SDL_CreateTexture(pRenderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, Menu_Width, Menu_Width);
+	My_Texture = SDL_CreateTexture(pRenderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET | SDL_TEXTUREACCESS_STREAMING, Menu_Width, Menu_Height);
+	
 	if(LoadTexture(pRenderer, ("./images/menu-back.bmp")) == false){
 		return false;
 	}
@@ -90,13 +91,17 @@ void CMenu::OnRender(CPlayer* Player1, SDL_Renderer* pRenderer){
 	 }
 	 sprintf_s(Name.Text, _countof(Name.Text), Player1->Char_Name);
 	 
-	 LoadTexture(pRenderer, ("./images/menu-back.bmp")); //makes the background of the menu grey, aka, loads the menu background
-	 
+	 //LoadTexture(pRenderer, ("./images/menu-back.bmp")); //makes the background of the menu grey, aka, loads the menu background
 	 //std::cout << "After Load Texture\n";
 	 
-	 SDL_SetRenderTarget(pRenderer, My_Texture); //Set our renderer to render all things to our My_Texture texture and not to screen... so keep the menu on one texture
+	 SDL_Texture *Menu_Text = SDL_CreateTexture(pRenderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, Menu_Width, Menu_Height);
+
+	 SDL_SetRenderTarget(pRenderer, Menu_Text); //Set our renderer to render all things to our Menu_Text texture and not to screen... so keep the menu on one texture
 	 
-	 
+	 SDL_RenderClear(pRenderer); // Clears anything on Texture;
+
+	 SDL_RenderCopy(pRenderer, My_Texture, NULL, NULL);  //copies Menu ackground image to Menu_texture first.
+
 	 Name.OnRender(pRenderer);
 	 T_HP_LABEL.OnRender(pRenderer);
 	 T_MP_LABEL.OnRender(pRenderer);
@@ -114,7 +119,8 @@ void CMenu::OnRender(CPlayer* Player1, SDL_Renderer* pRenderer){
 	 DESRect.y = Menu_Y;
 
 	 SDL_SetRenderTarget(pRenderer, NULL);  // Set the place to render back to NULL, meaning "The Screen"
-	 SDL_RenderCopy(pRenderer, My_Texture, NULL, &DESRect); //Renders our My_Texture, with our menu drawn on it... to the screen.
+	 SDL_RenderCopy(pRenderer, Menu_Text, NULL, &DESRect); //Renders our My_Texture, with our menu drawn on it... to the screen.
+	 SDL_DestroyTexture(Menu_Text);
 }
 
 void CMenu::OnCleanup(){

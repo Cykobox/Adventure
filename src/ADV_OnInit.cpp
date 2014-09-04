@@ -28,10 +28,15 @@ bool AdvGame::OnInit() {
 	 }
 
 	 // create the rendering context
-	 mpRenderer = SDL_CreateRenderer(mpMainWindow, -1, SDL_RENDERER_PRESENTVSYNC);
-
-
-     if(Player1.OnLoad(mpRenderer, "./images/pc_char-hi.bmp", 40, 40, false, false, 1) == false) {
+	 mpRenderer = SDL_CreateRenderer(mpMainWindow, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE);
+	 
+	 /*SDL_RenderSetLogicalSize(mpRenderer, 1080, 720);  
+	 I think this is the code that needs to be added so that it all renders to HD 
+	 and the larger resolution but then it gets down rezzed to whatever the window
+	 size is... i think... but I'm not sure. 
+	 */
+     
+	 if(Player1.OnLoad(mpRenderer, "./images/pc_char-hi.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
 
@@ -69,12 +74,12 @@ bool AdvGame::OnInit() {
      Enemy3.posX = 11;                                 //Set default enemy position.
      Enemy3.posY = 9;
 
-     
+     ActionControl.OnLoad();
 
-	 if (ActionControl.Messages.OnLoad() == false) {
+	 if (ActionControl.Messages.OnLoad(mpRenderer) == false) {
 	 	 return false;
 	 }
-     
+	 ActionControl.Messages.AddMessage("Welcome to Adventure! w,a,s,d = Move, SpaceBar = Menu, Num Pad2 = Action", 0, 0, 0);
 	 if (Menu.OnLoad(mpRenderer, 600, 160, 0, 0) == false ){ // don't know if this is the right place to put the Menu... but just trying to put it on the screen.
 	 	 return false;
 	 }
@@ -84,6 +89,6 @@ bool AdvGame::OnInit() {
 	                    //SDL_DEFAULT_REPEAT_INTERVAL * 5 = interval = how fast it repeats... in milliseconds (Default is build in SDL default... i *5'd it to slow it down.)
      CCamera::CameraControl.TargetMode = TARGET_MODE_CENTER;
      CCamera::CameraControl.SetTarget(&Player1.posX, &Player1.posY);
-     ActionControl.OnLoad();
+     
 	 return true;
 }

@@ -2,7 +2,7 @@
 #include <iostream>
 
 CRenderable::CRenderable(){
-	My_Texture = NULL;
+	//My_Texture = NULL;
 }
 
 bool CRenderable::LoadTextureWithTransparency(SDL_Renderer *Cur_Renderer, char* File){
@@ -16,7 +16,7 @@ bool CRenderable::LoadTextureWithTransparency(SDL_Renderer *Cur_Renderer, char* 
 	return true;
 }
 
-bool CRenderable::LoadTexture(SDL_Renderer* Cur_Renderer, char* File){
+bool CRenderable::LoadTexture(SDL_Renderer *Cur_Renderer, char* File){
 	SDL_Surface *Surf_Temp = NULL;
 	if ((Surf_Temp = SDL_LoadBMP(File)) == NULL) {
 		return false;

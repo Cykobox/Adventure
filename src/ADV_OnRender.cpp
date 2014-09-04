@@ -27,8 +27,8 @@ switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
                Menu.OnRender(&Player1, mpRenderer);
           }
 
-		  ActionControl.Messages.OnRender(mpRenderer);                   //Render the Messages on Screen
-
+		  //ActionControl.Messages.OnRender(mpRenderer);                   //Render the Messages on Screen
+		  ActionControl.OnRenderMessage(mpRenderer);
 		  SDL_RenderPresent(mpRenderer);  //Put SDL 2.0 Render mpRender to screen... basically same as SDL_Flip as line above.
 		  
           break;
