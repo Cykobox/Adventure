@@ -22,7 +22,7 @@ bool CRenderable::LoadTexture(SDL_Renderer *Cur_Renderer, char* File){
 		return false;
 		std::cout << "Failed to Load Texture\n";
 	}
-	std::cout << "Loaded" << File << "to surface\n";
+	std::cout << "Loaded " << File << " to surface\n";
 	My_Texture = SDL_CreateTextureFromSurface(Cur_Renderer, Surf_Temp);
 	SDL_FreeSurface(Surf_Temp);
 	return true;
