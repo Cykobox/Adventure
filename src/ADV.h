@@ -64,8 +64,8 @@ class AdvGame : public CEvent {
           void OnLoop();
           void OnRender();
           void OnCleanup();
-          void OnKeyDown(SDL_Keysym sym);
-		  void OnKeyUp(SDL_Keysym sym);
+		  void OnKeyDown(SDL_Scancode Scan_Code);
+		  void OnKeyUp(SDL_Scancode Scan_Code);
           void Reset();
 };
 

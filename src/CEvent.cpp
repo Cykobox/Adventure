@@ -36,12 +36,12 @@ void CEvent::OnEvent(SDL_Event* Event) {
 		 */
           
           case SDL_KEYDOWN: {
-            OnKeyDown(Event->key.keysym);
+			OnKeyDown(Event->key.keysym.scancode);
             break;
           }
           
           case SDL_KEYUP: {
-			OnKeyUp(Event->key.keysym);
+			OnKeyUp(Event->key.keysym.scancode);
             break;
           }
           
@@ -103,11 +103,11 @@ void CEvent::OnInputBlur() {
     //Pure virtual, do nothing
 }
  
-void CEvent::OnKeyDown(SDL_Keysym sym) {
+void CEvent::OnKeyDown(SDL_Scancode Scan_Code) {
     //Pure virtual, do nothing
 }
  
-void CEvent::OnKeyUp(SDL_Keysym sym) {
+void CEvent::OnKeyUp(SDL_Scancode Scan_Code) {
     //Pure virtual, do nothing
 }
  
