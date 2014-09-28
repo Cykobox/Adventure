@@ -5,24 +5,12 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-#include "Define.h"
-#include "CSurface.h" //Being replaced by... CRenderable.h
-#include "CAnimate.h"
 #include "CEvent.h"
-#include "CEntity.h"
 #include "CArea.h"
-#include "CCamera.h"
-#include "CPlayer.h"
-#include "Define.h"
 #include "CMenu.h"
 #include "CInventory.h"
 #include "CEnemy.h"
-#include "CMessage.h"
-#include "CAction.h"
 #include "CActionListControl.h"
-#include "CTargeting.h"
-#include "SItem.h"
-#include "CRenderable.h"
 
 class AdvGame : public CEvent {
       private:
@@ -67,6 +55,7 @@ class AdvGame : public CEvent {
 		  void OnKeyDown(SDL_Scancode Scan_Code);
 		  void OnKeyUp(SDL_Scancode Scan_Code);
           void Reset();
+		  void EmptyEnemyList();			// Empties the list of active enemies, despawning any that are active.
 };
 
 // the game object.

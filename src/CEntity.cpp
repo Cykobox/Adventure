@@ -166,11 +166,12 @@ bool CEntity::PosValid(int NewX, int NewY) {
                       }
                   }
               }
+			  // TODO - Entity to map collision.
               //Entity to Map Collision
-              MTile* Tile = CArea::AreaControl.GetTile(NewX, NewY);
-              if(PosValidTile(Tile) == false) {
-                   Return = false;
-              }
+              //MTile* Tile = CArea::AreaControl.GetTile(NewX, NewY);
+              //if(PosValidTile(Tile) == false) {
+              //     Return = false;
+              //}
               
               break;
          }
@@ -184,13 +185,13 @@ bool CEntity::PosValid(int NewX, int NewY) {
     return Return;
 }
 
-bool CEntity::PosValidTile(MTile* Tile) {
-     if(Tile == NULL) return true;
-     
-     if(Tile->TypeID == TILE_TYPE_BLOCK) return false;
-     
-     return true;
-}
+//bool CEntity::PosValidTile(MTile* Tile) {
+//     if(Tile == NULL) return true;
+//     
+//     if(Tile->TypeID == TILE_TYPE_BLOCK) return false;
+//     
+//     return true;
+//}
 
 bool CEntity::PosValidEntity(CEntity* Entity, int NewX, int NewY) {
       if(this != Entity &&	// Don't check against ourself.

@@ -26,7 +26,7 @@ void CText::OnRender(SDL_Renderer *pRenderer) {
 	 
 	 SDL_QueryTexture(My_Texture, NULL, NULL, &DesRect.w , &DesRect.h); //Set the width and heights of the current texture.
 	 
-	 std::cout << "Message = " << Text << "\n" << "X = " << DesRect.x << "; Y = " << DesRect.y << "; W = " << DesRect.w << "; H = " << DesRect.h << "\n";
+	 //std::cout << "Message = " << Text << "\n" << "X = " << DesRect.x << "; Y = " << DesRect.y << "; W = " << DesRect.w << "; H = " << DesRect.h << "\n";
 	 //debug tool
 	 
 	 SDL_RenderCopy(pRenderer, My_Texture, NULL, &DesRect);

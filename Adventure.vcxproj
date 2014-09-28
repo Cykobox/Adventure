@@ -39,7 +39,9 @@
     <ClCompile Include="src\GFXMODE.cpp" />
     <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\MTile.cpp" />
-    <ClCompile Include="src\SItem.cpp" />
+    <ClCompile Include="src\SItem.cpp">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+    </ClCompile>
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\TileSet.cpp" />
     <ClCompile Include="src\tinyXML\tinyxml2.cpp" />
@@ -71,6 +73,7 @@
     <ClInclude Include="src\MTile.h" />
     <ClInclude Include="src\SInvItem.h" />
     <ClInclude Include="src\SItem.h" />
+    <ClInclude Include="src\StringUtils.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\TileSet.h" />
     <ClInclude Include="src\tinyXML\tinyxml2.h" />

@@ -26,7 +26,7 @@ bool TileSet::Load(SDL_Renderer *pRenderer, std::string Filename)
 
 	FILE *pXMLFile = NULL;
 	std::string sFileName = std::string(".\\data\\tilesets\\") + Filename;
-	if (fopen_s(&pXMLFile, sFileName.c_str(), "r"))
+	if (fopen_s(&pXMLFile, sFileName.c_str(), "rb"))
 	{
 		// Log( "Could not open tileset XML file");
 		return false;
@@ -106,7 +106,7 @@ bool TileSet::Load(SDL_Renderer *pRenderer, std::string Filename)
 			else
 			{
 				auto it = mTileMap.find(tileID);
-				if (it == mTileMap.end())
+				if (it != mTileMap.end())
 				{
 					// Error, Duplicate tile ID found.
 				}

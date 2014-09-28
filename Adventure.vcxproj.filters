@@ -206,5 +206,8 @@
     <ClInclude Include="src\tinyXML\tinyxml2.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="src\StringUtils.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

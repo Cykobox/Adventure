@@ -60,7 +60,7 @@ void CMessage::OnRender(SDL_Renderer* pRenderer) {
 			 int *MessTextH = NULL;
 			 SDL_QueryTexture(Message_Texture, NULL, NULL, MessTextW, MessTextH); //Set the width and heights of the current texture.
 			 SDL_RenderCopy(pRenderer, Message_Texture, NULL, &DESRect);      //Renders our Message_Texture, with all our messages and background... to the screen.													 //with their own X and Y coordinates, directly to the Screen...	
-			 std::cout << "MessTextw = " << MessTextW << "; MessTextH = " << MessTextH << "\n";
+			 //std::cout << "MessTextw = " << MessTextW << "; MessTextH = " << MessTextH << "\n";
 			 SDL_DestroyTexture(Message_Texture);
 			 
 			 break;
@@ -82,9 +82,9 @@ void CMessage::AddMessage(char* Message, int X, int Y, int Length) {
           for (int i = 4; i > -1; i--) {
 			  sprintf_s(MessageArray[i].Text, _countof(MessageArray[i].Text), MessageArray[i - 1].Text);
           }
-		  std::cout << "MessageArray[0].text = " << MessageArray[0].Text << "\n";
+		  //std::cout << "MessageArray[0].text = " << MessageArray[0].Text << "\n";
 		  sprintf_s(MessageArray[0].Text, _countof(MessageArray[0].Text), Message);
-		  std::cout << "MessageArray[0].text = " << MessageArray[0].Text << "\n";
+		  //std::cout << "MessageArray[0].text = " << MessageArray[0].Text << "\n";
 		  break;
      }
      default: {
