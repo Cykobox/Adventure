@@ -42,6 +42,20 @@ void AdvGame::Reset() {
      
 }
 
+//
+// Empties the list of active enemies, despawning any that are active.
+void AdvGame::EmptyEnemyList()
+{
+	std::vector<CEnemy>::iterator it;
+	for (it = EnemyList.begin(); it != EnemyList.end(); ++it)
+	{
+		(*it).OnCleanup();
+	}
+
+	EnemyList.clear();
+}
+
+
 AdvGame Game;
 
 int main(int argc, char *argv[])

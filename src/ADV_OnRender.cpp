@@ -11,20 +11,17 @@ void AdvGame::OnRender()
 		case (GFX_MODE_PC):
 		{ 
 			SDL_RenderClear(mpRenderer);  //Clears SDL 2.0 Render
-		  
+
+			// render the map:
+			CArea::AreaControl.OnRender(mpRenderer);
+
+			// render the entities:
 			for (int i = 0; i < CEntity::EntityList.size(); i++)
 			{
 				if (!CEntity::EntityList[i]) continue;
 				if (CEntity::EntityList[i]->Dead == false) { CEntity::EntityList[i]->OnRender(mpRenderer); }
 			}
 
-			/*---------------------------------------------------------------------------------------------------- 
-			THIS IS ALLLLLLLLL THE STUFF THAT CALLS PREVIOUS VERSIONS OF ON RENDER FUNCTIONS WHICH USE SURFACES... 
-			THESE ALL NEED TO BE REPLACES BY NEW ONRENDER CALLS THAT USE TEXTURES... AS THESE ARE FIXED THEY WILL BE REINSTATED
-			------------------------------------------------------------------------------------------------------
-			CArea::AreaControl.OnRender(Surf_Display, -CCamera::CameraControl.GetX(), -CCamera::CameraControl.GetY());
-			-------------------------------------------------------------------------------------------------------------
-			*/
 
 			//If the Menu is open, render the menu on screen too.
 			if (Menu_Vis)

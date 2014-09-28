@@ -1,6 +1,9 @@
 #include "ADV.h"
 
 
+#include "TileSet.h"
+#include "SItem.h"
+
 bool AdvGame::OnInit() { 
 	
 	 if(SDL_Init(SDL_INIT_EVERYTHING) < 0 ){
@@ -30,57 +33,75 @@ bool AdvGame::OnInit() {
 	 // create the rendering context
 	 mpRenderer = SDL_CreateRenderer(mpMainWindow, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE);
 	 
-	 /*SDL_RenderSetLogicalSize(mpRenderer, 1080, 720);  
+	 
+	 /*SDL_RenderSetLogicalSize(mpRenderer, 1080, 720);
 	 I think this is the code that needs to be added so that it all renders to HD 
 	 and the larger resolution but then it gets down rezzed to whatever the window
 	 size is... i think... but I'm not sure. 
 	 */
      
+	 // Load the tilesets/textures we know we need and initialize systems:
 	 if(Player1.OnLoad(mpRenderer, "./images/pc_char-hi.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
 
 	 InitializeItemList();
-     
-     CEntity::EntityList.push_back(&Player1);      //This adds the player character to the entity list... 
-     Player1.posX = 6;
-     Player1.posY = 6;
+	 EmptyEnemyList();
 
-	 EnemyList.reserve(50);
-     if(CArea::AreaControl.OnLoad("./maps/1.area") == false) {
+
+	 // TODO - Technically, we should load into a menu system here, but for now,
+	 // just load into Area 1.
+
+	 if (CArea::AreaControl.OnLoad(mpRenderer, "TestOverworld.xml") == false)
+	 {
          return false;
      }
-     
+
+
+
+	 Player1.posX = 6;
+	 Player1.posY = 6;
+	 CEntity::EntityList.push_back(&Player1);      //This adds the player character to the entity list... 
+
+	 EnemyList.reserve(50);
+
+	 // Create temp enemy #1.
 	 if (Enemy.OnLoad(mpRenderer, "./images/pc_001.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
-
-     CEntity::EntityList.push_back(&Enemy);          //Put test enemy into Entity List
      Enemy.posX = 3;                                 //Set default enemy position.
      Enemy.posY = 3;
+     CEntity::EntityList.push_back(&Enemy);          //Put test enemy into Entity List
 
+	 // create temp Enemy #2
 	 if (Enemy2.OnLoad(mpRenderer, "./images/pc_001.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
-     CEntity::EntityList.push_back(&Enemy2);          //Put test enemy into Entity List
      Enemy2.posX = 10;                                 //Set default enemy position.
      Enemy2.posY = 2;
+     CEntity::EntityList.push_back(&Enemy2);          //Put test enemy into Entity List
 
+	 // create Temp Enemy #3
 	 if (Enemy3.OnLoad(mpRenderer, "./images/pc_001.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
-     CEntity::EntityList.push_back(&Enemy3);          //Put test enemy into Entity List
-     
      Enemy3.posX = 11;                                 //Set default enemy position.
      Enemy3.posY = 9;
+     CEntity::EntityList.push_back(&Enemy3);          //Put test enemy into Entity List
 
-     ActionControl.OnLoad();
 
-	 if (ActionControl.Messages.OnLoad(mpRenderer) == false) {
+	 ActionControl.OnLoad();
+
+
+	 if (ActionControl.Messages.OnLoad(mpRenderer) == false)
+	 {
 	 	 return false;
 	 }
 	 ActionControl.Messages.AddMessage("Welcome to Adventure! w,a,s,d = Move, SpaceBar = Menu, Num Pad2 = Action", 0, 0, 0);
-	 if (Menu.OnLoad(mpRenderer, 600, 160, 0, 0) == false ){ // don't know if this is the right place to put the Menu... but just trying to put it on the screen.
+	 // don't know if this is the right place to put the Menu... but just trying to put it on the screen.
+	 if (Menu.OnLoad(mpRenderer, 600, 160, 0, 0) == false )
+	 {
+
 	 	 return false;
 	 }
 

@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "CArea.h"
+//#include "CArea.h"
 #include "CAnimate.h"
 #include "CCamera.h"
 #include "CFPS.h"
@@ -63,7 +63,7 @@ class CEntity : public CRenderable{
              void OnMove(float MoveX, float MoveY);
       private:
              bool PosValid(int NewX, int NewY);
-             bool PosValidTile(MTile* Tile);
+             //bool PosValidTile(MTile* Tile);
              bool PosValidEntity(CEntity* Entity, int NewX, int NewY);  
 };
 
