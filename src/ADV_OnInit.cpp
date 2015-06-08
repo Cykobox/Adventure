@@ -41,6 +41,7 @@ bool AdvGame::OnInit() {
 	 */
      
 	 // Load the tilesets/textures we know we need and initialize systems:
+	 // CRBTODO - Change player to load from an XML file instead of from a BMP.
 	 if(Player1.OnLoad(mpRenderer, "./images/pc_char-hi.bmp", 40, 40, false, false, 1) == false) {
          return false;
      }
@@ -59,8 +60,8 @@ bool AdvGame::OnInit() {
 
 
 
-	 Player1.posX = 6;
-	 Player1.posY = 6;
+	 Player1.posX = 10;
+	 Player1.posY = 5;
 	 CEntity::EntityList.push_back(&Player1);      //This adds the player character to the entity list... 
 
 	 EnemyList.reserve(50);

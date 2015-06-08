@@ -56,6 +56,11 @@ class AdvGame : public CEvent {
 		  void OnKeyUp(SDL_Scancode Scan_Code);
           void Reset();
 		  void EmptyEnemyList();			// Empties the list of active enemies, despawning any that are active.
+
+private:
+	void OnKeyDownPC(SDL_Scancode Scan_Code);
+	void OnKeyDown8Bit(SDL_Scancode Scan_Code);
+
 };
 
 // the game object.

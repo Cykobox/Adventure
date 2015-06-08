@@ -128,13 +128,25 @@ bool TileSet::Load(SDL_Renderer *pRenderer, std::string Filename)
 
 }
 
-void TileSet::Render(int tileID, int X, int Y, int width, int height)
+void TileSet::Render(int tileID, int X, int Y, int width, int height) const
 {
-	const std::map<int,STile>::iterator it = mTileMap.find(tileID);
+	const TTileMap::const_iterator it = mTileMap.find(tileID);
 	if (it != mTileMap.end())
 	{
 		// render!
 		mTexture.Render(X, Y, width, height, it->second.posX * mTileSize, it->second.posY * mTileSize, mTileSize, mTileSize);
 	}
 
+}
+
+
+bool TileSet::IsWalkable(int tileID)
+{
+	const TTileMap::const_iterator it = mTileMap.find(tileID);
+	if (it != mTileMap.end())
+	{
+		return it->second.walkable;
+	}
+
+	return false;
 }

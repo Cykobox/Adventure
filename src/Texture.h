@@ -15,9 +15,9 @@ public:
 	~Texture();
 
 	bool Load(SDL_Renderer* Renderer, std::string Filename);
-	void Render(int X, int Y);
-	void Render(int X, int Y, int Width, int Height);
-	void Render(int X, int Y, int Width, int Height, int SX, int SY, int SWidth, int SHeight);
+	void Render(int X, int Y) const;
+	void Render(int X, int Y, int Width, int Height) const;
+	void Render(int X, int Y, int Width, int Height, int SX, int SY, int SWidth, int SHeight) const;
 	int GetWidth() { return mWidth; }
 	int GetHeight() { return mHeight; }
 

@@ -36,6 +36,7 @@
     <ClCompile Include="src\CSurface.cpp" />
     <ClCompile Include="src\CTargeting.cpp" />
     <ClCompile Include="src\CText.cpp" />
+    <ClCompile Include="src\CTileSetManager.cpp" />
     <ClCompile Include="src\GFXMODE.cpp" />
     <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\MTile.cpp" />
@@ -66,6 +67,7 @@
     <ClInclude Include="src\CSurface.h" />
     <ClInclude Include="src\CTargeting.h" />
     <ClInclude Include="src\CText.h" />
+    <ClInclude Include="src\CTileSetManager.h" />
     <ClInclude Include="src\Define.h" />
     <ClInclude Include="src\GFXMODE.h" />
     <ClInclude Include="src\Log.h" />

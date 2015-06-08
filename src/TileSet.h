@@ -20,7 +20,9 @@ public:
 
 	bool Load(SDL_Renderer *pRenderer, std::string Filename);
 
-	void Render(int tileID, int X, int Y, int width, int height);
+	void Render(int tileID, int X, int Y, int width, int height) const;
+
+	bool IsWalkable(int tileID);
 
 private:
 	struct STile
@@ -30,11 +32,13 @@ private:
 		std::string name;
 		bool walkable;
 	};
+	typedef std::map< int, STile> TTileMap;
 
 	std::string mName;
 	Texture mTexture;
 	int mTileSize;
-	std::map< int, STile > mTileMap;
+
+	TTileMap mTileMap;
 };
 
 #endif

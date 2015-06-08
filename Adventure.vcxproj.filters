@@ -117,6 +117,9 @@
     <ClCompile Include="src\tinyXML\tinyxml2.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="src\CTileSetManager.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ADV.h">
@@ -207,6 +210,9 @@
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="src\StringUtils.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CTileSetManager.h">
       <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>

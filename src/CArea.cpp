@@ -7,6 +7,7 @@
 //#include <time.h>
 #include "StringUtils.h"
 #include "tinyXML\tinyxml2.h"
+#include "CCamera.h"
 
 
 CArea  CArea::AreaControl;
@@ -316,8 +317,8 @@ void CArea::OnRender(SDL_Renderer *pRenderer)
 
 		// WHat tile is in the upper left of the screen.
 		// This will eventually need to be filled in with data from the camera as the player moves around.
-		int startX = -1;
-		int startY = -1;
+		int startX = CCamera::CameraControl.GetX();
+		int startY = CCamera::CameraControl.GetY();
 
 		int ix = startX;
 		int iy = startY;
@@ -372,10 +373,15 @@ void CArea::OnCleanup() {
 }
 
 //
-// Returnds whether the given space is a walkable space.
+// Returns whether the given space is a walkable space.
 bool CArea::IsWalkable(int X, int Y)
 {
-	return true;
+	// If tile is off the map, it isn't walkable.
+	if (X < 0 || X >= mSizeX || Y < 0 || Y >= mSizeY)
+		return false;
+
+	int tileID = mpTileMap[(Y * mSizeX) + X];
+	return mTileSet.IsWalkable(tileID);
 }
 
 void CArea::SpawnEnemy(std::vector<CEnemy> &EnemyList)

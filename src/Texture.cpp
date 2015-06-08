@@ -58,18 +58,18 @@ bool Texture::Load(SDL_Renderer* Renderer, std::string Filename)
 	//*/
 }
 
-void Texture::Render(int X, int Y)
+void Texture::Render(int X, int Y) const
 {
 	Render(X, Y, mWidth, mHeight);
 }
 
-void Texture::Render(int X, int Y, int Width, int Height)
+void Texture::Render(int X, int Y, int Width, int Height) const
 {
 	SDL_Rect Destination = { X, Y, Width, Height };
 	SDL_RenderCopy(mpRenderer, mpSDLTexture, NULL, &Destination);
 }
 
-void Texture::Render(int X, int Y, int Width, int Height, int SX, int SY, int SWidth, int SHeight)
+void Texture::Render(int X, int Y, int Width, int Height, int SX, int SY, int SWidth, int SHeight) const
 {
 	SDL_Rect Source = { SX, SY, SWidth, SHeight };
 	SDL_Rect Destination = { X, Y, Width, Height };

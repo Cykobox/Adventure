@@ -1,5 +1,7 @@
 #include "CEntity.h"
 #include "GFXMODE.h"
+#include "CArea.h"
+#include <iostream>
 
 std::vector<CEntity*> CEntity::EntityList;
 std::vector<CEntityCol> CEntityCol::EntityColList;
@@ -29,25 +31,29 @@ CEntity::CEntity() {
 CEntity::~CEntity() {
 }
 
-bool CEntity::OnLoad(SDL_Renderer *pRenderer, char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames) {
-	if (CRenderable::LoadTexture(pRenderer, File) == NULL) {
-         return false;
-     }
+bool CEntity::OnLoad(SDL_Renderer *pRenderer, char* File, int Width, int Height, bool Animate, bool Transparency, int MaxFrames)
+{
+	if (CRenderable::LoadTexture(pRenderer, File) == NULL)
+	{
+		return false;
+	}
 
-     Anim_Bool = Animate;
-     Trans_Bool = Transparency;
+	// CRBTODO - On load, look up the texture file from the XML, ask the texture system to load it.
+
+	Anim_Bool = Animate;
+	Trans_Bool = Transparency;
      
-	 /*  SETS TRANSPARENCY IN PICTURE.... NEEDS TO BE REPLACES IN NEW SDL2 System... 
-     if (Trans_Bool == true) {
-     CSurface::Transparent(Surf_Entity, 255, 0, 255);
-     } */
+	/*  SETS TRANSPARENCY IN PICTURE.... NEEDS TO BE REPLACES IN NEW SDL2 System... 
+	if (Trans_Bool == true) {
+	CSurface::Transparent(Surf_Entity, 255, 0, 255);
+	} */
      
-     this->Width = Width;
-     this->Height = Height;
+	this->Width = Width;
+	this->Height = Height;
      
-     Anim_Control.MaxFrames = MaxFrames;
+	Anim_Control.MaxFrames = MaxFrames;
      
-     return true;
+	return true;
 }
 
 void CEntity::OnLoop() {
@@ -136,11 +142,13 @@ void CEntity::OnMove(float MoveX, float MoveY) {
                       posX = posX + (int)MoveX;   //Apply the move
                       posY = posY + (int)MoveY;   //Apply the move
                       
-					  if (Type == ENTITY_TYPE_PLAYER) {
-							if ((posX - CCamera::CameraControl.GetX()) < 4) CCamera::CameraControl.X--;
-							if ((posX - CCamera::CameraControl.GetX()) >11) CCamera::CameraControl.X++;
-							if ((posY - CCamera::CameraControl.GetY()) < 4) CCamera::CameraControl.Y--;
-							if ((posY - CCamera::CameraControl.GetY()) > 7) CCamera::CameraControl.Y++;
+					  // TODO - Don't scroll the camera if the map is already scrolled all the way in that direction!
+					  if (Type == ENTITY_TYPE_PLAYER)
+					  {
+							if ((posX - CCamera::CameraControl.GetX()) < 7) CCamera::CameraControl.X--;
+							if ((posX - CCamera::CameraControl.GetX()) >12) CCamera::CameraControl.X++;
+							if ((posY - CCamera::CameraControl.GetY()) < 2) CCamera::CameraControl.Y--;
+							if ((posY - CCamera::CameraControl.GetY()) > 5) CCamera::CameraControl.Y++;
 					  }
                       //If the character is getting close to the edge of the screen... move the camera... 
 					  //NOTE!! This is disabled for entities that are not the character!!!
@@ -153,25 +161,28 @@ void CEntity::OnMove(float MoveX, float MoveY) {
      };
 }
 
-bool CEntity::PosValid(int NewX, int NewY) {
+bool CEntity::PosValid(int NewX, int NewY)
+{
     bool Return = true;
-    switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE()) {
-         case (GFX_MODE_PC): {
+    switch (GFXMODE::GFXMODE_Control.GET_GFX_MODE())
+	{
+         case (GFX_MODE_PC):
+		 {
               //Entity to Entity collision
-              if(Flags & ENTITY_FLAG_MAPONLY) {
-              }else{
-                  for(int i = 0;i < EntityList.size();i++) {
-                      if(PosValidEntity(EntityList[i], NewX, NewY) == false) {
-                          Return = false;
-                      }
+              if(Flags & ENTITY_FLAG_MAPONLY)
+			  {
+
+			  }
+			  else
+			  {
+                  for(Uint16 i = 0;i < EntityList.size();i++)
+				  {
+                      if(PosValidEntity(EntityList[i], NewX, NewY) == false)
+						return false;
                   }
               }
-			  // TODO - Entity to map collision.
-              //Entity to Map Collision
-              //MTile* Tile = CArea::AreaControl.GetTile(NewX, NewY);
-              //if(PosValidTile(Tile) == false) {
-              //     Return = false;
-              //}
+
+			  return CArea::AreaControl.IsWalkable(NewX, NewY);
               
               break;
          }
